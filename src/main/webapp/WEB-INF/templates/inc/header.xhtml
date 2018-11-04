@@ -7,12 +7,15 @@
 
   <header>
     <div class="logo">
-      <h1>Tršický</h1>
-      <h:graphicImage library="image" name="panelak.jpeg" style="width: 100%/>
-	<h1>Zpravodaj</h1>
+      <h1>Tršický&#160;</h1>
+      <h:graphicImage library="image" name="erb.png"/>
+	<h1>&#160;Zpravodaj</h1>
       </div>
       <div class="headerDate">
-	úterý, 16.10.2018
+	#{applicationBean.todayNameOfDay()},
+	<h:outputText value="#{applicationBean.today()}">
+          <f:convertDateTime pattern="dd.MM.yyyy"/>
+        </h:outputText>
       </div>
       <div class="headerIssuer">
 	Vydává Obec Tršice.

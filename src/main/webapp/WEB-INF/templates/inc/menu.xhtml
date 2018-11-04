@@ -11,7 +11,11 @@
       <p:submenu label="Nastavení" icon="fa fa-cog">
         <p:menuitem value="Uživatel" icon="fa fa-user-circle-o" outcome="/auth/editUser.xhtml?faces-redirect=true"/>
       </p:submenu>
-        <p:commandButton value="Odhlásit #{sessionBean.user.username}" icon="fa fa-sign-out" action="#{sessionBean.logout}" ajax="false"/>
+      <f:facet name="options">
+	<p:commandButton value="Odhlásit #{sessionBean.user.username}"
+			 icon="fa fa-sign-out"
+			 action="#{sessionBean.logout}"
+			 ajax="false"/>
       </f:facet>
     </p:menubar>
   </h:form>  
