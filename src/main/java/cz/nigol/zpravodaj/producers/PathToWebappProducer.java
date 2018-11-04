@@ -11,7 +11,7 @@ import javax.inject.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import cz.nigol.svj.qualifiers.PathToWebapp;
+import cz.nigol.zpravodaj.qualifiers.PathToWebapp;
 
 @Named
 @ApplicationScoped

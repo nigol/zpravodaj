@@ -9,9 +9,9 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import cz.nigol.svj.beans.SessionBean;
-import cz.nigol.svj.entities.User;
-import cz.nigol.svj.qualifiers.LoggedUser;
+import cz.nigol.zpravodaj.beans.SessionBean;
+import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.zpravodaj.qualifiers.LoggedUser;
 
 @Named
 @ApplicationScoped

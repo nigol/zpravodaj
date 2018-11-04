@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 
-import cz.nigol.svj.beans.SessionBean;
-import cz.nigol.svj.entities.User;
-import cz.nigol.svj.qualifiers.LoggedUser;
+import cz.nigol.zpravodaj.beans.SessionBean;
 
 @Named
 @RequestScoped
@@ -25,19 +23,9 @@ public class AuthPhaseListener implements PhaseListener {
     private SessionBean sessionBean;
     
     public void beforePhase(PhaseEvent pe) {
-        User user = sessionBean.getUser();
         HttpServletRequest req = (HttpServletRequest) pe.getFacesContext().getExternalContext().getRequest();
         String uri = req.getRequestURI();
         boolean reject = pe.getPhaseId() == PhaseId.RESTORE_VIEW;
-        reject = reject && uri.contains("admin") && (user == null || !user.isActive() || !user.isAdmin());
-        reject = reject || uri.contains("auth") && (user == null || !user.isActive());
-        reject = reject || uri.contains("owner") && 
-            (user == null || !user.isActive() || !sessionBean.isUserOwner(user));
-        if (reject) {
-            FacesContext facesContext = pe.getFacesContext();
-            facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "index.xhtml?faces-redirect=true");
-            log.info("---UNAUTHORIZED ACCESS.");
-        }
     }
     
     public void afterPhase(PhaseEvent pe) {
