@@ -59,3 +59,23 @@ footer {
     height: 5em;
     margin-top: 4em;
 }
+
+.categories {
+    color: #444;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-variant: small-caps;
+    font-size: 130%;
+}
+
+.categories a {
+    color: #444;
+}
+
+.categories a:visited {
+    color: #444;
+}
+
+.categories a:hover {
+    color: #444;
+}

@@ -15,6 +15,17 @@
     </h:head>
     <h:body>
       <ui:include src="inc/header.xhtml"/>
+
+      <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_ENUM_VALUES"/>
+      <div class="categories">
+	 • 
+	<ui:repeat var="category" value="#{Categories.ALL_ENUM_VALUES}">
+	  <h:link value="#{category.label}" outcome="/kategorie.xhtml">
+            <f:param name="k" value="#{category}"/>
+          </h:link>
+	   • 
+	</ui:repeat>
+      </div>
       
       <div class="ui-fluid">
         <p:growl id="growl" showDetail="true" sticky="true" />
