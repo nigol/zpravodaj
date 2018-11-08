@@ -3,6 +3,7 @@ package cz.nigol.zpravodaj.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -10,6 +11,7 @@ import javax.persistence.TypedQuery;
 import cz.nigol.zpravodaj.entities.User;
 import cz.nigol.zpravodaj.services.UserService;
 
+@Stateless
 public class UserServiceImpl implements UserService {
     @PersistenceContext(unitName="zpravodajPU")
     private EntityManager em;

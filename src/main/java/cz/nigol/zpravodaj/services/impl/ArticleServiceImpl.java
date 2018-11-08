@@ -1,0 +1,43 @@
+package cz.nigol.zpravodaj.services.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import cz.nigol.zpravodaj.entities.Article;
+import cz.nigol.zpravodaj.services.ArticleService;
+
+@Stateless
+public class ArticleServiceImpl implements ArticleService {
+    @PersistenceContext(unitName="zpravodajPU")
+    private EntityManager em;
+    
+    @Override
+    public List<Article> getAllArticles() {
+	TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_ALL, Article.class);
+	return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public Article getArticleById(String id) {
+	return em.find(Article.class, id);
+    }
+
+    @Override
+    public Article saveArticle(Article article, String body) {
+	Article result = em.merge(article);
+	result.setBody(body);
+	return result;
+    }
+
+    @Override
+    public Article loadArticleBody(Article article) {
+	Article result = em.find(Article.class, article.getId());
+	result.setBody(result.getBody());
+	return result;
+    }
+}
