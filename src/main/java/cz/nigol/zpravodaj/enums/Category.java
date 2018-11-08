@@ -3,7 +3,7 @@ package cz.nigol.zpravodaj.enums;
 public enum Category {
     OBEC("Obec"),
     KULTURA("Kultura"),
-    SKOLA("škola"),
+    SKOLA("Škola"),
     SPOLKY("Spolky"),
     ZABAVA("Zábava & Zajímavosti"),
     JINE("Jiné");
