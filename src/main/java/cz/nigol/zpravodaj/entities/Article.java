@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 @NamedQueries({
 	@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a"),
+	    @NamedQuery(name=Article.GET_BY_USER, query="SELECT a FROM Article a WHERE a.createdBy = :user"),
     })
 @Entity
 @Table(name = "ZPR_ARTICLE")
@@ -24,6 +25,9 @@ public class Article implements Serializable {
     private static final long serialVersionUID = 5517765996360052018L;
 
     public static final String GET_ALL = "Article.GET_ALL";
+    public static final String GET_BY_USER = "Article.GET_BY_USER";
+
+    public static final String USER_PARAM = "user";
 
     @Id
     @Column(name="ID", columnDefinition="VARCHAR(300)")

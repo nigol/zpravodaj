@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import cz.nigol.zpravodaj.entities.Article;
+import cz.nigol.zpravodaj.entities.User;
 import cz.nigol.zpravodaj.services.ArticleService;
 
 @Stateless
@@ -39,5 +40,12 @@ public class ArticleServiceImpl implements ArticleService {
 	Article result = em.find(Article.class, article.getId());
 	result.setBody(result.getBody());
 	return result;
+    }
+
+    @Override
+    public List<Article> getArticlesByUser(User user) {
+	TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_BY_USER, Article.class);
+	typedQuery.setParameter(Article.USER_PARAM, user);
+	return new ArrayList<>(typedQuery.getResultList());
     }
 }
