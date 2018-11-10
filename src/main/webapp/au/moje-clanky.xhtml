@@ -6,9 +6,96 @@
                 template="/WEB-INF/templates/template.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:param name="title" value="Tršický zpravodaj"/>
+  <ui:param name="title" value="Tršický zpravodaj"/>
 
-    <ui:define name="content">
-      <h2>Moje články</h2>
-    </ui:define>
+  <ui:define name="content">
+    <h2>Moje články</h2>
+
+    <h:form>
+      <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+        <p:column>
+	  <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	    <p:commandButton value="Nový článek" 
+                             action="#{articlesBean.newArticle}" 
+                             update="@form"
+			     icon="fa fa-plus-square-o"
+                             immediate="true"/>
+	    <p:commandButton value="Smazat článek" 
+                             action="#{articlesBean.delete}"
+			     disabled="#{empty articlesBean.article}"
+			     onclick="return confirm('Opravdu smazat?')"
+                             update="@form :growl"
+			     icon="fa fa-trash-o"
+                             immediate="true"/>
+	  </p:panelGrid>
+	  
+          <p:dataTable id="articles" 
+                       value="#{articlesBean.myArticles}" 
+                       emptyMessage="Nenalezen žádný výsledek."
+                       selectionMode="single"
+                       selection="#{articlesBean.article}"
+                       rowKey="#{article.id}"
+		       rows="5"
+		       paginator="true"
+		       paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                       var="article">
+            <p:ajax event="rowSelect"
+		    listener="#{articlesBean.onArticleSelect}"
+		    update="@form"
+		    resetValues="true"/>
+            <p:column headerText="Název článku">
+              <h:outputText value="#{article.label}"/>
+            </p:column>
+	    <p:column headerText="Změněno">
+              <h:outputText value="#{article.createdAt}">
+		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+	      </h:outputText>
+            </p:column>
+	    <p:column headerText="Kategorie">
+              <h:outputText value="#{article.articleSection}"/>
+            </p:column>
+	    <p:column headerText="Publikováno">
+              <h:outputText value="#{article.publishedAt}">
+		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+	      </h:outputText>
+            </p:column>
+          </p:dataTable>
+        </p:column>
+
+        <p:column>
+          <p:outputPanel rendered="#{!empty articlesBean.article}">
+            <h3>Článek</h3>
+
+	    <p:importEnum type="cz.nigol.zpravodaj.enums.Category"/>
+	    
+	    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+	      <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+		  <p:outputLabel value="Nadpis" for="label"/>
+		  <p:inputText id="label" value="#{articlesBean.article.label}" required="true">
+		    <f:validateLength minimum="1" maximum="300"/>
+		  </p:inputText>
+		</p:panelGrid>
+		
+		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+		  <p:outputLabel value="Kategorie" for="section"/>
+		  <p:selectOneMenu id="section" value="#{articlesBean.article.category}">
+		    <f:selectItems value="#{ArticleSection.ALL_VALUES}"/>
+		  </p:selectOneMenu>
+		</p:panelGrid>
+	      </p:panelGrid>
+	      
+              <p:outputLabel value="Text článku" for="body"/>
+              <p:textEditor id="body" value="#{articlesBean.body}" height="300"/>
+	    </p:panelGrid>
+	    
+            <p:commandButton value="Uložit" 
+                             action="#{articlesBean.save}"
+			     icon="fa fa-check"
+                             update=":growl @form"/>
+          </p:outputPanel>
+        </p:column>
+      </p:panelGrid>
+    </h:form>
+  </ui:define>
 </ui:composition>
