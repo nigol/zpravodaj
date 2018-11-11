@@ -102,10 +102,19 @@
               <p:textEditor id="body" value="#{articlesBean.body}" height="300"/>
 	    </p:panelGrid>
 	    
-            <p:commandButton value="Uložit" 
-                             action="#{articlesBean.save}"
-			     icon="fa fa-check"
-                             update=":growl @form"/>
+	    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	      <p:commandButton value="Uložit" 
+                               action="#{articlesBean.save}"
+			       icon="fa fa-check"
+                               update=":growl @form"/>
+
+	      <h:link value="Náhled článku"
+		      outcome="/clanek.xhtml"
+		      target="_blank"
+		      disabled="#{!articlesBean.previewAllowed}">
+		<f:param name="id" value="#{articlesBean.article.id}"/>
+              </h:link>
+	    </p:panelGrid>
           </p:outputPanel>
         </p:column>
       </p:panelGrid>

@@ -81,6 +81,10 @@ public class ArticlesBean implements Serializable {
 	body = article.getBody();
     }
 
+    public boolean isPreviewAllowed() {
+	return article != null && !NEW_ID.equals(article.getId());
+    }
+
     /**
      * @return the articles
      */
