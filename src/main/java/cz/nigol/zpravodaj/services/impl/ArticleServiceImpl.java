@@ -48,4 +48,9 @@ public class ArticleServiceImpl implements ArticleService {
 	typedQuery.setParameter(Article.USER_PARAM, user);
 	return new ArrayList<>(typedQuery.getResultList());
     }
+
+    @Override
+    public void deleteArticle(Article article) {
+	em.remove(em.merge(article));
+    }
 }

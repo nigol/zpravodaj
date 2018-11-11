@@ -5,14 +5,14 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 		xmlns:p="http://primefaces.org/ui">
 
-  <h:form id="mainMenuForm" rendered="#{sessionBean.user ne null and !sessionBean.user.accountant}">
-    <p:menubar>
-      <p:menuitem value="Přehled" icon="fa fa-tachometer" outcome="/auth/main.xhtml?faces-redirect=true"/>
+  <h:form id="mainMenuForm" rendered="#{sessionBean.user ne null}">
+    <p:menubar style="font-size: 85%">
+      <p:menuitem value="Moje články" icon="fa fa-files-o" outcome="/au/moje-clanky.xhtml?faces-redirect=true"/>
       <p:submenu label="Nastavení" icon="fa fa-cog">
-        <p:menuitem value="Uživatel" icon="fa fa-user-circle-o" outcome="/auth/editUser.xhtml?faces-redirect=true"/>
+        <p:menuitem value="Uživatel" icon="fa fa-user-circle-o" outcome="/index.xhtml?faces-redirect=true"/>
       </p:submenu>
       <f:facet name="options">
-	<p:commandButton value="Odhlásit #{sessionBean.user.username}"
+	<p:commandButton value="Odhlásit #{sessionBean.user.id}"
 			 icon="fa fa-sign-out"
 			 action="#{sessionBean.logout}"
 			 ajax="false"/>

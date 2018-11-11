@@ -3,6 +3,8 @@ package cz.nigol.zpravodaj.beans;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.zpravodaj.entities.User;
@@ -11,7 +13,15 @@ import cz.nigol.zpravodaj.entities.User;
 @SessionScoped
 public class SessionBean implements Serializable {
     private static final long serialVersionUID = 9212583897602369531L;
-	private User user;
+    @Inject
+    private FacesContext facesContext;
+    private User user = new User();
+
+    public String logout() {
+	user = null;
+	facesContext.getExternalContext().invalidateSession();
+	return "/index.xhtml?faces-redirect=true";
+    }
 
 	/**
 	 * @return the user

@@ -25,7 +25,7 @@ import cz.nigol.zpravodaj.enums.Category;
 @NamedQueries({
 	@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a"),
 	    @NamedQuery(name=Article.GET_BY_USER,
-			query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY changedAt DESC"),
+			query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY a.changedAt DESC"),
     })
 @Entity
 @Table(name = "ZPR_ARTICLE")
@@ -139,7 +139,35 @@ public class Article implements Serializable {
 	this.publishedAt = publishedAt;
     }
 
-    /**
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	/**
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * @param label the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	/**
      * @return the changedAt
      */
     public Date getChangedAt() {

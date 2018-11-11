@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,29 +28,52 @@ public class ArticlesBean implements Serializable {
     private UserService userService;
     @Inject
     private ArticleService articleService;
+    @Inject
+    private FacesContext facesContext;
     private List<Article> articles;
     private List<Article> myArticles;
     private Article article;
     private String body;
 
+    private static final String NEW_ID = "NewlyCreatedArticleId";
+
     @PostConstruct
     public void init() {
 	user = userService.getUserById(user.getId());
+	prepareArticleLists();
+    }
+
+    private void prepareArticleLists() {
 	articles = articleService.getAllArticles();
 	myArticles = articleService.getArticlesByUser(user);
     }
 
     public void newArticle() {
 	article = new Article();
+	article.setId(NEW_ID);
 	body = "";
+	myArticles.add(article);
     }
 
     public void save() {
 	article.setChangedAt(new Date());
+	if (NEW_ID.equals(article.getId())) {
+	    article.setCreatedBy(user);
+	    article.setId(article.getLabel());
+	}
+	articleService.saveArticle(article, body);
+	article = null;
+	body = null;
+	prepareArticleLists();
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Článek byl uložen."));
     }
 
     public void delete() {
-	
+	articleService.deleteArticle(article);
+	article = null;
+	body = null;
+	prepareArticleLists();
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Smazáno", "Článek byl smazán."));
     }
 
     public void onArticleSelect() {

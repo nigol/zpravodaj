@@ -11,4 +11,5 @@ public interface ArticleService {
     Article saveArticle(Article article, String body);
     Article loadArticleBody(Article article);
     List<Article> getArticlesByUser(User user);
+    void deleteArticle(Article article);
 }

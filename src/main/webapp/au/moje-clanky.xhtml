@@ -19,6 +19,7 @@
                              action="#{articlesBean.newArticle}" 
                              update="@form"
 			     icon="fa fa-plus-square-o"
+			     resetValues="true"
                              immediate="true"/>
 	    <p:commandButton value="Smazat článek" 
                              action="#{articlesBean.delete}"
@@ -26,6 +27,7 @@
 			     onclick="return confirm('Opravdu smazat?')"
                              update="@form :growl"
 			     icon="fa fa-trash-o"
+			     resetValues="true"
                              immediate="true"/>
 	  </p:panelGrid>
 	  
@@ -47,12 +49,12 @@
               <h:outputText value="#{article.label}"/>
             </p:column>
 	    <p:column headerText="Změněno">
-              <h:outputText value="#{article.createdAt}">
+              <h:outputText value="#{article.changedAt}">
 		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 	      </h:outputText>
             </p:column>
 	    <p:column headerText="Kategorie">
-              <h:outputText value="#{article.articleSection}"/>
+              <h:outputText value="#{article.category}"/>
             </p:column>
 	    <p:column headerText="Publikováno">
               <h:outputText value="#{article.publishedAt}">
@@ -66,7 +68,7 @@
           <p:outputPanel rendered="#{!empty articlesBean.article}">
             <h3>Článek</h3>
 
-	    <p:importEnum type="cz.nigol.zpravodaj.enums.Category"/>
+	    <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_VALUES"/>
 	    
 	    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 	      <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
@@ -80,10 +82,21 @@
 		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 		  <p:outputLabel value="Kategorie" for="section"/>
 		  <p:selectOneMenu id="section" value="#{articlesBean.article.category}">
-		    <f:selectItems value="#{ArticleSection.ALL_VALUES}"/>
+		    <f:selectItems value="#{Categories.ALL_VALUES}"/>
 		  </p:selectOneMenu>
 		</p:panelGrid>
 	      </p:panelGrid>
+
+	      <p:outputLabel value="Perex článku" for="leadParagraph"/>
+              <p:inputTextarea id="leadParagraph"
+			       value="#{articlesBean.article.leadParagraph}"
+			       required="true"
+			       counter="display"
+			       maxlength="700"
+			       counterTemplate="Zbývá {0} znaků."
+			       autoResize="true"
+			       rows="5"/>
+	      <h:outputText id="display" style="color: #666; font-size: 80%"/>
 	      
               <p:outputLabel value="Text článku" for="body"/>
               <p:textEditor id="body" value="#{articlesBean.body}" height="300"/>
