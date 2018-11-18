@@ -66,6 +66,22 @@ public class ArticlesBean implements Serializable {
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Článek byl uložen."));
     }
 
+    public void publish(Article articleToPublish) {
+	Article art = articleService.loadArticleBody(articleToPublish);
+	art.setPublishedAt(new Date());
+	articleService.saveArticle(art, art.getBody());
+	prepareArticleLists();
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Publikováno", "Publikováno s dnešním datem."));
+    }
+
+    public void unpublish(Article articleToPublish) {
+	Article art = articleService.loadArticleBody(articleToPublish);
+	art.setPublishedAt(null);
+	articleService.saveArticle(art, art.getBody());
+	prepareArticleLists();
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Staženo", "Publikace byla zrušena."));
+    }
+
     public void delete() {
 	articleService.deleteArticle(article);
 	article = null;

@@ -9,18 +9,12 @@
   <ui:param name="title" value="Tršický zpravodaj"/>
 
   <ui:define name="content">
-    <h2>Moje články</h2>
+    <h2>Všechny články</h2>
 
     <h:form>
       <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
         <p:column>
 	  <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-	    <p:commandButton value="Nový článek" 
-                             action="#{articlesBean.newArticle}" 
-                             update="@form"
-			     icon="fa fa-plus-square-o"
-			     resetValues="true"
-                             immediate="true"/>
 	    <p:commandButton value="Smazat článek" 
                              action="#{articlesBean.delete}"
 			     disabled="#{empty articlesBean.article}"
@@ -32,7 +26,7 @@
 	  </p:panelGrid>
 	  
           <p:dataTable id="articles" 
-                       value="#{articlesBean.myArticles}" 
+                       value="#{articlesBean.articles}" 
                        emptyMessage="Nenalezen žádný výsledek."
                        selectionMode="single"
                        selection="#{articlesBean.article}"
@@ -61,6 +55,24 @@
 		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 	      </h:outputText>
             </p:column>
+	    <p:column>
+	      <p:commandButton value="Publikovat" 
+                               action="#{articlesBean.publish(article)}"
+			       rendered="#{empty article.publishedAt}"
+			       onclick="return confirm('Opravdu chcete článek publikovat?')"
+                               update="@form :growl"
+			       icon="fa fa-thermometer-full"
+			       resetValues="true"
+                               immediate="true"/>
+	      <p:commandButton value="Nepublikovat" 
+                               action="#{articlesBean.unpublish(article)}"
+			       rendered="#{!empty article.publishedAt}"
+			       onclick="return confirm('Opravdu chcete zrušit publikaci článku?')"
+                               update="@form :growl"
+			       icon="fa fa-thermometer-empty"
+			       resetValues="true"
+                               immediate="true"/>
+	    </p:column>
           </p:dataTable>
         </p:column>
 
@@ -74,19 +86,14 @@
 	      <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
 		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 		  <p:outputLabel value="Nadpis" for="label"/>
-		  <p:inputText id="label"
-			       value="#{articlesBean.article.label}"
-			       disabled="#{!empty articlesBean.article.publishedAt}"
-			       required="true">
+		  <p:inputText id="label" value="#{articlesBean.article.label}" required="true">
 		    <f:validateLength minimum="1" maximum="300"/>
 		  </p:inputText>
 		</p:panelGrid>
 		
 		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 		  <p:outputLabel value="Kategorie" for="section"/>
-		  <p:selectOneMenu id="section"
-				   disabled="#{!empty articlesBean.article.publishedAt}"
-				   value="#{articlesBean.article.category}">
+		  <p:selectOneMenu id="section" value="#{articlesBean.article.category}">
 		    <f:selectItems value="#{Categories.ALL_VALUES}"/>
 		  </p:selectOneMenu>
 		</p:panelGrid>
@@ -100,21 +107,16 @@
 			       maxlength="700"
 			       counterTemplate="Zbývá {0} znaků."
 			       autoResize="true"
-			       disabled="#{!empty articlesBean.article.publishedAt}"
 			       rows="5"/>
 	      <h:outputText id="display" style="color: #666; font-size: 80%"/>
 	      
               <p:outputLabel value="Text článku" for="body"/>
-              <p:textEditor id="body"
-			    value="#{articlesBean.body}"
-			    disabled="#{!empty articlesBean.article.publishedAt}"
-			    height="300"/>
+              <p:textEditor id="body" value="#{articlesBean.body}" height="300"/>
 	    </p:panelGrid>
 	    
 	    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
 	      <p:commandButton value="Uložit" 
                                action="#{articlesBean.save}"
-			       disabled="#{!empty articlesBean.article.publishedAt}"
 			       icon="fa fa-check"
                                update=":growl @form"/>
 
