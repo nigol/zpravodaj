@@ -62,8 +62,6 @@ public class ArticlesBean implements Serializable {
 	    article.setId(article.getLabel());
 	}
 	articleService.saveArticle(article, body);
-	article = null;
-	body = null;
 	prepareArticleLists();
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Článek byl uložen."));
     }
