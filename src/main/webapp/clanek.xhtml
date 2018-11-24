@@ -17,13 +17,26 @@
 
   <ui:define name="content">
     <h:panelGroup rendered="#{!empty singleArticleBean.article}">
-      <h2>#{singleArticleBean.article.label}</h2>
+      <h2 style="margin-top: 3em">#{singleArticleBean.article.label}</h2>
 
-      <p style="font-weight: bold">
+      <h:panelGroup style="color: #666; text-decoration:underline">
+	<h:outputText value="#{singleArticleBean.article.publishedAt}">
+	  <f:convertDateTime pattern="dd.MM.yyyy"/>
+	</h:outputText>
+	<h:outputText value=" • "/>
+	Jméno Autora
+      </h:panelGroup>
+      <p style="font-size: 130%">
 	#{singleArticleBean.article.leadParagraph}
       </p>
 
-      <h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
+      <div class="articleBody">
+	<h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
+      </div>
+
+      <p style="text-align: right;">
+	&#8718;
+      </p>
     </h:panelGroup>
 
     <h:panelGroup rendered="#{empty singleArticleBean.article}">

@@ -19,7 +19,7 @@ h1 {
 }
 
 header {
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
 }
 
 footer {
@@ -78,6 +78,28 @@ footer {
 
 .categories a:hover {
     color: #444;
+}
+
+.articleBody .ql-align-center {
+    text-align: center;
+}
+
+.articleBody .ql-align-left {
+    text-align: left;
+}
+
+.articleBody .ql-align-right {
+    text-align: right;
+}
+
+.articleBody .ql-align-justify {
+    text-align: justify;
+}
+
+.articleBody img {
+    max-width: 100%;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 @media only screen and (max-width: 600px) {
