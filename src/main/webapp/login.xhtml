@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/templateTransient.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:param name="title" value="Tršický zpravodaj"/>
+
+  <ui:define name="content">
+    <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+      <p:column/>
+      <h:panelGroup style="text-align: center">
+	<h2 style="text-decoration: underline">
+	  Přihlášení
+	</h2>
+      </h:panelGroup>
+      <p:column/>
+
+      <p:column/>
+
+      <h:form>
+	<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+	  <p:outputLabel for="loginName" value="Uživatelské jméno"/>
+	  <p:inputText id="loginName" value="#{loginBean.loginName}" required="true" requiredMessage="Jméno: Musí být vyplněno."/>
+	  <p:outputLabel for="password" value="Heslo"/>
+	  <p:password id="password" value="#{loginBean.password}" required="true" requiredMessage="Heslo: Musí být vyplněno."/>
+	  <p:commandButton value="Přihlásit"
+			   action="#{loginBean.login}"
+			   icon="fa fa-sign-in"
+			   ajax="false"/>
+	</p:panelGrid>
+      </h:form>
+      
+      <p:column/>
+    </p:panelGrid>
+  </ui:define>
+</ui:composition>
