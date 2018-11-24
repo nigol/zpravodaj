@@ -14,16 +14,22 @@
 	  Featured
 	</p:column>
 
-	<p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-	  <ui:repeat var="article" value="#{indexBean.articles}">
-	    <p:column>
-	      <h3>#{article.label}</h3>
-	      <p>
-		#{article.leadParagraph}
-	      </p>
-	    </p:column>
-	  </ui:repeat>
-	</p:panelGrid>
+	<p:dataGrid value="#{indexBean.articles}"
+		    var="article"
+		    columns="2"
+		    layout="grid"
+		    emptyMessage="Není k dispozici žádný článek.">
+	  <h:link outcome="/clanek.xhtml" style="text-decoration: none">
+	    <f:param name="id" value="#{article.id}"/>
+	    <div class="categoryArticle">
+	      #{article.category.label}
+	    </div>
+	    <h3>#{article.label}</h3>
+	    <p>
+	      #{article.leadParagraph}
+	    </p>
+	  </h:link>
+	</p:dataGrid>
       </p:panelGrid>
     </ui:define>
 </ui:composition>

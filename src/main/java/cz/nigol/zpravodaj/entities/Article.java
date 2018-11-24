@@ -26,6 +26,8 @@ import cz.nigol.zpravodaj.enums.Category;
 	@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a"),
 	    @NamedQuery(name=Article.GET_BY_USER,
 			query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY a.changedAt DESC"),
+	    @NamedQuery(name=Article.GET_PUBLISHED,
+			query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
     })
 @Entity
 @Table(name = "ZPR_ARTICLE")
@@ -34,6 +36,7 @@ public class Article implements Serializable {
 
     public static final String GET_ALL = "Article.GET_ALL";
     public static final String GET_BY_USER = "Article.GET_BY_USER";
+    public static final String GET_PUBLISHED = "Article.GET_PUBLISHED";
 
     public static final String USER_PARAM = "user";
 

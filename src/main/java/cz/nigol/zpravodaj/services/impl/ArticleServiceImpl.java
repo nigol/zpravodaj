@@ -52,5 +52,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void deleteArticle(Article article) {
 	em.remove(em.merge(article));
-    }
+	}
+
+	@Override
+	public List<Article> getPublishedArticles() {
+	    TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_PUBLISHED, Article.class);
+	    return new ArrayList<>(typedQuery.getResultList());
+	}
 }

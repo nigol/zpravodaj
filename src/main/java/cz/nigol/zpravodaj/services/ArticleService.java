@@ -12,4 +12,5 @@ public interface ArticleService {
     Article loadArticleBody(Article article);
     List<Article> getArticlesByUser(User user);
     void deleteArticle(Article article);
+    List<Article> getPublishedArticles();
 }
