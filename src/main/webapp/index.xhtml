@@ -9,6 +9,21 @@
     <ui:param name="title" value="Tršický zpravodaj"/>
 
     <ui:define name="content">
-      Ahoj
+      <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+	<p:column>
+	  Featured
+	</p:column>
+
+	<p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	  <ui:repeat var="article" value="#{indexBean.articles}">
+	    <p:column>
+	      <h3>#{article.label}</h3>
+	      <p>
+		#{article.leadParagraph}
+	      </p>
+	    </p:column>
+	  </ui:repeat>
+	</p:panelGrid>
+      </p:panelGrid>
     </ui:define>
 </ui:composition>
