@@ -85,6 +85,18 @@
 	    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 	      <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
 		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+		  <p:outputLabel value="ID" for="articleId"/>
+		  <h:outputText id="articleId" value="#{articlesBean.article.id}"/>
+		</p:panelGrid>
+
+		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+		  <p:outputLabel value="Autor" for="author"/>
+		  <p:inputText id="author" value="#{articlesBean.article.id}" required="true">
+		    <f:validateLength minimum="1" maximum="300"/>
+		  </p:inputText>
+		</p:panelGrid>
+		
+		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 		  <p:outputLabel value="Nadpis" for="label"/>
 		  <p:inputText id="label" value="#{articlesBean.article.label}" required="true">
 		    <f:validateLength minimum="1" maximum="300"/>

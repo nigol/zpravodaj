@@ -79,6 +79,7 @@
 			       disabled="#{!empty articlesBean.article.publishedAt}"
 			       required="true">
 		    <f:validateLength minimum="1" maximum="300"/>
+		    <f:validator binding="#{articleLabelValidator}"/>
 		  </p:inputText>
 		</p:panelGrid>
 		
