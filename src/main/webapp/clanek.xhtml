@@ -24,7 +24,7 @@
 	  <f:convertDateTime pattern="dd.MM.yyyy"/>
 	</h:outputText>
 	<h:outputText value=" • "/>
-	Jméno Autora
+	#{singleArticleBean.article.createdBy.fullName}
       </h:panelGroup>
       <p style="font-size: 130%">
 	#{singleArticleBean.article.leadParagraph}
