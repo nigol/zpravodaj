@@ -31,4 +31,10 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) {
 	return em.merge(user);
     }
+
+    @Override
+    public List<User> getActiveUsers() {
+	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE, User.class);
+	return new ArrayList<>(typedQuery.getResultList());
+    }
 }

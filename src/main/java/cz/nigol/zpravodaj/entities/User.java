@@ -20,7 +20,8 @@ import javax.persistence.TemporalType;
 import cz.nigol.zpravodaj.enums.Role;
 
 @NamedQueries({
-	@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u"),
+	@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.id ASC"),
+	    @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
     })
 @Entity
 @Table(name = "ZPR_USER")
@@ -28,6 +29,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = -8877869295129979225L;
 
     public static final String GET_ALL = "User.GET_ALL";
+    public static final String GET_ACTIVE = "User.GET_ACTIVE";
 
     @Id
     @Column(name="ID", columnDefinition="VARCHAR(50)")
