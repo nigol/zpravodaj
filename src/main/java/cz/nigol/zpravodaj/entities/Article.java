@@ -189,7 +189,7 @@ public class Article implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Article)) return false;
         Article article = (Article) o;
-        return id == article.getId();
+        return id.equals(article.getId());
     }
  
     @Override

@@ -90,10 +90,15 @@
 		</p:panelGrid>
 
 		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-		  <p:outputLabel value="Autor" for="author"/>
-		  <p:inputText id="author" value="#{articlesBean.article.id}" required="true">
-		    <f:validateLength minimum="1" maximum="300"/>
-		  </p:inputText>
+ 		  <p:outputLabel value="Autor" for="author"/>
+		  <p:selectOneMenu id="author"
+				   value="#{articlesBean.article.createdBy}"
+				   converter="#{userConverter}">
+		    <f:selectItems value="#{articlesBean.users}"
+				   var="user"
+				   itemLabel="#{user.fullName}"
+				   itemValue="#{user}"/>
+		  </p:selectOneMenu> 
 		</p:panelGrid>
 		
 		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">

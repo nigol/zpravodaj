@@ -34,12 +34,14 @@ public class ArticlesBean implements Serializable {
     private List<Article> myArticles;
     private Article article;
     private String body;
+    private List<User> users;
 
     public static final String NEW_ID = "NewlyCreatedArticleId";
 
     @PostConstruct
     public void init() {
 	user = userService.getUserById(user.getId());
+	users = userService.getAllUsers();
 	prepareArticleLists();
     }
 
@@ -153,5 +155,19 @@ public class ArticlesBean implements Serializable {
      */
     public void setBody(String body) {
 	this.body = body;
+    }
+
+    /**
+     * @return the users
+     */
+    public List<User> getUsers() {
+	return users;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(List<User> users) {
+	this.users = users;
     }
 }

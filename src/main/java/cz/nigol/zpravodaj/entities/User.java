@@ -175,7 +175,7 @@ public class User implements Serializable {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id == user.getId();
+        return id.equals((user.getId()));
     }
  
     @Override
