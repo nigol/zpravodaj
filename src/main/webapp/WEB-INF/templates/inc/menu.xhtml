@@ -6,7 +6,7 @@
 		xmlns:p="http://primefaces.org/ui">
 
   <h:form id="mainMenuForm" rendered="#{sessionBean.user ne null}">
-    <p:menubar style="font-size: 85%">
+    <p:menubar style="font-size: 85%; background-color: #eee">
       <p:menuitem value="Moje články" icon="fa fa-files-o" outcome="/au/moje-clanky.xhtml?faces-redirect=true"/>
       <p:menuitem value="Všechny články" icon="fa fa-files-o" outcome="/ed/clanky.xhtml?faces-redirect=true"/>
       <p:menuitem value="Uživatelé" icon="fa fa-users" outcome="/ed/uzivatele.xhtml?faces-redirect=true"/>
