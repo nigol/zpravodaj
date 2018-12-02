@@ -9,6 +9,18 @@
   <ui:param name="title" value="Tršický zpravodaj"/>
 
   <ui:define name="content">
+    <script>
+      var Link = Quill.import('formats/link');
+      class MyLink extends Link {
+	  static create(value) {
+	      const node = super.create(value);
+	      node.removeAttribute('target');
+	      return node;
+	  }
+      }
+      Quill.register(MyLink, true);
+    </script>
+    
     <h2>Všechny články</h2>
 
     <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
