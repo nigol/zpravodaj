@@ -16,10 +16,12 @@ public class IndexBean {
     @Inject
     private ArticleService articleService;
     private List<Article> articles;
+    private Article featuredArticle;
 
     @PostConstruct
     public void init() {
 	articles = articleService.getPublishedArticles();
+	featuredArticle = articleService.getFeaturedArticle();
     }
 
     /**
@@ -34,5 +36,19 @@ public class IndexBean {
      */
     public void setArticles(List<Article> articles) {
 	this.articles = articles;
+    }
+
+    /**
+     * @return the featuredArticle
+     */
+    public Article getFeaturedArticle() {
+	return featuredArticle;
+    }
+
+    /**
+     * @param featuredArticle the featuredArticle to set
+     */
+    public void setFeaturedArticle(Article featuredArticle) {
+	this.featuredArticle = featuredArticle;
     }
 }

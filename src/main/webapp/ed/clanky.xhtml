@@ -145,6 +145,11 @@
 		</p:panelGrid>
 	      </p:panelGrid>
 
+	      <p:outputLabel value="Adresa URL pro pozadí vybraného článku" for="featuredUrl"/>
+	      <p:inputText id="featuredUrl" value="#{articlesBean.article.featuredUrl}">
+		<f:validateLength maximum="300"/>
+	      </p:inputText>
+
 	      <p:outputLabel value="Perex článku" for="leadParagraph"/>
               <p:inputTextarea id="leadParagraph"
 			       value="#{articlesBean.article.leadParagraph}"

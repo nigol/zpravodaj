@@ -10,7 +10,7 @@
 
     <ui:define name="content">
       <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	<p:column>
+	<p:column rendered="#{!empty indexBean.featuredArticle}">
 	  Featured
 	</p:column>
 

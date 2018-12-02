@@ -28,6 +28,9 @@ import cz.nigol.zpravodaj.enums.Category;
 			query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY a.changedAt DESC"),
 	    @NamedQuery(name=Article.GET_PUBLISHED,
 			query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
+	    @NamedQuery(name=Article.GET_FEATURED,
+			query="SELECT a FROM Article a WHERE a.featuredUrl IS NOT NULL AND " +
+			"a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
     })
 @Entity
 @Table(name = "ZPR_ARTICLE")
@@ -37,6 +40,7 @@ public class Article implements Serializable {
     public static final String GET_ALL = "Article.GET_ALL";
     public static final String GET_BY_USER = "Article.GET_BY_USER";
     public static final String GET_PUBLISHED = "Article.GET_PUBLISHED";
+    public static final String GET_FEATURED = "Article.GET_FEATURED";
 
     public static final String USER_PARAM = "user";
 
@@ -71,6 +75,9 @@ public class Article implements Serializable {
     @Column(name="CHANGED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date changedAt;
+
+    @Column(name="FEATURED_URL")
+    private String featuredUrl;
 
     /**
      * @return the id
@@ -184,7 +191,21 @@ public class Article implements Serializable {
 	this.changedAt = changedAt;
     }
 
-    @Override
+	/**
+	 * @return the featuredUrl
+	 */
+	public String getFeaturedUrl() {
+		return featuredUrl;
+	}
+
+	/**
+	 * @param featuredUrl the featuredUrl to set
+	 */
+	public void setFeaturedUrl(String featuredUrl) {
+		this.featuredUrl = featuredUrl;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Article)) return false;
