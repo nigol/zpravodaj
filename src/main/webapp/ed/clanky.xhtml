@@ -11,6 +11,23 @@
   <ui:define name="content">
     <h2>Všechny články</h2>
 
+    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+      <p:commandButton id="filesButton"
+		       value="Soubory"
+		       icon="fa fa-file"
+		       type="button"/>
+      <p:overlayPanel id="files"
+		      for="filesButton"
+		      hideEffect="fade"
+		      dynamic="true"
+		      style="width: 90%"
+		      modal="false">
+	<ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
+      </p:overlayPanel>
+
+      <p:column/>
+    </p:panelGrid>
+
     <h:form>
       <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
         <p:column>

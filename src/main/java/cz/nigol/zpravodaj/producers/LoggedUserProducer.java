@@ -2,9 +2,7 @@ package cz.nigol.zpravodaj.producers;
 
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,7 +19,7 @@ class LoggedUserProducer {
 
     @Produces
     @LoggedUser
-    @SessionScoped
+    @RequestScoped
     public User loggedUser() {
         return sessionBean.getUser();
     }

@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.FileAttribute;
 import java.nio.file.attribute.PosixFilePermission;
 import java.nio.file.attribute.PosixFilePermissions;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,8 +15,10 @@ import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import cz.nigol.zpravodaj.entities.FileMetadata;
+import cz.nigol.zpravodaj.entities.User;
 import cz.nigol.zpravodaj.exceptions.UploadFailedException;
 import cz.nigol.zpravodaj.services.FileMetadataService;
 
@@ -31,9 +34,10 @@ public class FileMetadataServiceImpl implements FileMetadataService {
     private EntityManager em;
 
     @Override
-    public List<FileMetadata> getByUserId(String id) {
-	// TODO Auto-generated method stub
-	return null;
+    public List<FileMetadata> getByUser(User user) {
+	TypedQuery<FileMetadata> typedQuery = em.createNamedQuery(FileMetadata.GET_BY_USER, FileMetadata.class);
+	typedQuery.setParameter(FileMetadata.USER_PARAM, user);
+	return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
