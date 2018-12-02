@@ -46,12 +46,12 @@
     
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/errors/500.html</location>
+        <location>/chyba.html</location>
     </error-page>
 
     <error-page>
         <error-code>404</error-code>
-        <location>/errors/404.html</location>
+        <location>/chyba.html</location>
     </error-page>
     
     <error-page>
