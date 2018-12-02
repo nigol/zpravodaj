@@ -10,9 +10,19 @@
 
     <ui:define name="content">
       <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	<p:column rendered="#{!empty indexBean.featuredArticle}">
-	  Featured
-	</p:column>
+	<h:link outcome="/clanek.xhtml" style="text-decoration: none">
+	  <f:param name="id" value="#{indexBean.featuredArticle.id}"/>  
+	  <h:panelGroup layout="block"
+			rendered="#{!empty indexBean.featuredArticle}"
+			style="background: #fff url('#{indexBean.featuredArticle.featuredUrl}') no-repeat left; padding: 1em; margin-top: 1em; margin-bottom: 1em; border-radius: 6px">
+	    <h3 style="padding: 1em; margin-bottom: 2em; background: rgba(0,0,0,0.7); border-radius: 6px; color: #fff">
+	      #{indexBean.featuredArticle.label}
+	    </h3>
+	    <div style="padding: 1em; background: rgba(0,0,0,0.7); border-radius: 6px; color: #fff">
+	      #{indexBean.featuredArticle.leadParagraph}
+	    </div>
+	  </h:panelGroup>
+	</h:link>
 
 	<p:dataGrid value="#{indexBean.articles}"
 		    var="article"
