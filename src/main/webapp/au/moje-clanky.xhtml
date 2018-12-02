@@ -26,7 +26,9 @@
     <h:form>
       <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
         <p:column>
-	  <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	  <p:panelGrid layout="grid" columns="4" styleClass="ui-noborder">
+	    <p:column/>
+	    
 	    <p:commandButton value="Nový článek" 
                              action="#{articlesBean.newArticle}" 
                              update="@form"
@@ -41,6 +43,8 @@
 			     icon="fa fa-trash-o"
 			     resetValues="true"
                              immediate="true"/>
+
+	    <p:column/>
 	  </p:panelGrid>
 	  
           <p:dataTable id="articles" 

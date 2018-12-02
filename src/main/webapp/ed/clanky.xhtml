@@ -23,7 +23,9 @@
     
     <h2>Všechny články</h2>
 
-    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+    <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+      <p:column/>
+      
       <p:commandButton id="filesButton"
 		       value="Soubory"
 		       icon="fa fa-file"
@@ -32,7 +34,9 @@
 		      for="filesButton"
 		      hideEffect="fade"
 		      dynamic="true"
-		      style="width: 90%"
+		      my="center top"
+		      at="center bottom"
+		      style="width: 80%"
 		      modal="false">
 	<ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
       </p:overlayPanel>
@@ -43,7 +47,9 @@
     <h:form>
       <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
         <p:column>
-	  <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	  <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+	    <p:column/>
+	    
 	    <p:commandButton value="Smazat článek" 
                              action="#{articlesBean.delete}"
 			     disabled="#{empty articlesBean.article}"
@@ -52,6 +58,8 @@
 			     icon="fa fa-trash-o"
 			     resetValues="true"
                              immediate="true"/>
+
+	    <p:column/>
 	  </p:panelGrid>
 	  
           <p:dataTable id="articles" 
