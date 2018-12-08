@@ -56,7 +56,7 @@
     
     <error-page>
         <error-code>500</error-code>
-        <location>/errors/500.html</location>
+        <location>/chyba.html</location>
     </error-page>
     
     <security-constraint>
