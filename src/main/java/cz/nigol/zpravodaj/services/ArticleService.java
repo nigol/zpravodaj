@@ -1,5 +1,6 @@
 package cz.nigol.zpravodaj.services;
 
+import java.io.OutputStream;
 import java.util.List;
 
 import cz.nigol.zpravodaj.entities.Article;
@@ -16,4 +17,5 @@ public interface ArticleService {
     List<Article> getPublishedArticles();
     Article getFeaturedArticle();
     List<Article> getArticlesByCategory(Category category);
+    void generateRss(OutputStream outputStream);
 }

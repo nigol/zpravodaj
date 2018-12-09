@@ -12,5 +12,11 @@
 	    value="Přihlášení"
 	    style="text-decoration: none">
     </h:link>
+    <h:outputText value=" • "></h:outputText>
+    <h:link outcome="/index.xhtml"
+	    value="RSS"
+	    style="text-decoration: none">
+      <f:param name="rss" value="true"/>
+    </h:link>
   </footer>
 </ui:composition>

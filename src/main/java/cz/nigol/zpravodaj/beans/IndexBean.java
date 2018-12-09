@@ -1,9 +1,13 @@
 package cz.nigol.zpravodaj.beans;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,11 +20,14 @@ import cz.nigol.zpravodaj.services.ArticleService;
 public class IndexBean {
     @Inject
     private ArticleService articleService;
+    @Inject
+    private FacesContext facesContext;
     private List<Article> articles;
     private Article featuredArticle;
     private String categoryId;
     private Category category;
     private List<Article> categoryArticles;
+    private String rss;
 
     @PostConstruct
     public void init() {
@@ -28,9 +35,24 @@ public class IndexBean {
 	featuredArticle = articleService.getFeaturedArticle();
     }
 
-    public void onLoad() {
-	category = Category.valueOf(categoryId);
-	categoryArticles = articleService.getArticlesByCategory(category);
+    public void onLoad() throws IOException {
+	if (rss != null && "true".equals(rss)) {
+	    generateRssChannel();
+	}
+	if (categoryId != null) {
+	    category = Category.valueOf(categoryId);
+	    categoryArticles = articleService.getArticlesByCategory(category);
+	}
+    }
+
+    public void generateRssChannel() throws IOException {
+	ExternalContext externalContext = facesContext.getExternalContext();
+	externalContext.responseReset();
+	externalContext.setResponseContentType("application/rss+xml");
+	OutputStream outputStream = externalContext.getResponseOutputStream();
+	articleService.generateRss(outputStream);
+	outputStream.close();
+	facesContext.responseComplete();
     }
 
     /**
@@ -101,5 +123,19 @@ public class IndexBean {
      */
     public void setCategoryArticles(List<Article> categoryArticles) {
 	this.categoryArticles = categoryArticles;
+    }
+
+    /**
+     * @return the rss
+     */
+    public String getRss() {
+	return rss;
+    }
+
+    /**
+     * @param rss the rss to set
+     */
+    public void setRss(String rss) {
+	this.rss = rss;
     }
 }

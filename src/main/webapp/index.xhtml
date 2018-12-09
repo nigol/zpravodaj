@@ -8,6 +8,13 @@
 
   <ui:param name="title" value="Tršický zpravodaj"/>
 
+  <ui:define name="metadata">
+    <f:metadata>
+      <f:viewParam name="rss" value="#{indexBean.rss}"/>
+      <f:viewAction action="#{indexBean.onLoad}"/>
+    </f:metadata>
+  </ui:define>
+
   <ui:define name="content">
     <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
       <h:link outcome="/clanek.xhtml" style="text-decoration: none">
