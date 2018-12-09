@@ -6,9 +6,34 @@
                 template="/WEB-INF/templates/templateTransient.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:param name="title" value="Tršický zpravodaj"/>
+  <ui:param name="title" value="#{indexBean.category.label} - Tršický zpravodaj"/>
 
-    <ui:define name="content">
-      Kategorie
-    </ui:define>
+  <ui:define name="metadata">
+    <f:metadata>
+      <f:viewParam name="k" value="#{indexBean.categoryId}"/>
+      <f:viewAction action="#{indexBean.onLoad}"/>
+    </f:metadata>
+  </ui:define>
+
+  <ui:define name="content">
+    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+      <p:dataGrid value="#{indexBean.categoryArticles}"
+		  var="article"
+		  columns="2"
+		  layout="grid"
+		  style="margin-top: 2em; margin-bottom: 1em"
+		  emptyMessage="Není k dispozici žádný článek.">
+	<h:link outcome="/clanek.xhtml" style="text-decoration: none">
+	  <f:param name="id" value="#{article.id}"/>
+	  <div class="categoryArticle">
+	    #{article.category.label}
+	  </div>
+	  <h3>#{article.label}</h3>
+	  <p>
+	    #{article.leadParagraph}
+	  </p>
+	</h:link>
+      </p:dataGrid>
+    </p:panelGrid>
+  </ui:define>
 </ui:composition>

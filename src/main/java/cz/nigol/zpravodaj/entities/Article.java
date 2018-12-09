@@ -31,6 +31,9 @@ import cz.nigol.zpravodaj.enums.Category;
 	    @NamedQuery(name=Article.GET_FEATURED,
 			query="SELECT a FROM Article a WHERE a.featuredUrl IS NOT NULL AND " +
 			"a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
+	    @NamedQuery(name=Article.GET_BY_CATEGORY,
+			query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL AND a.category = :category " +
+			"ORDER BY a.publishedAt DESC"),
     })
 @Entity
 @Table(name = "ZPR_ARTICLE")
@@ -41,8 +44,10 @@ public class Article implements Serializable {
     public static final String GET_BY_USER = "Article.GET_BY_USER";
     public static final String GET_PUBLISHED = "Article.GET_PUBLISHED";
     public static final String GET_FEATURED = "Article.GET_FEATURED";
+    public static final String GET_BY_CATEGORY = "Article.GET_BY_CATEGORY";
 
     public static final String USER_PARAM = "user";
+    public static final String CATEGORY_PARAM = "category";
 
     @Id
     @Column(name="ID", columnDefinition="VARCHAR(300)")

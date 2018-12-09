@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import cz.nigol.zpravodaj.entities.Article;
 import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.zpravodaj.enums.Category;
 import cz.nigol.zpravodaj.services.ArticleService;
 
 @Stateless
@@ -65,5 +66,12 @@ public class ArticleServiceImpl implements ArticleService {
 	TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_FEATURED, Article.class);
 	List<Article> articles = typedQuery.getResultList();
 	return articles.isEmpty() ? null : articles.get(0);
+    }
+
+    @Override
+    public List<Article> getArticlesByCategory(Category category) {
+	TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_BY_CATEGORY, Article.class);
+	typedQuery.setParameter(Article.CATEGORY_PARAM, category);
+	return new ArrayList<>(typedQuery.getResultList());
     }
 }

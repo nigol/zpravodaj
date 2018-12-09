@@ -4,6 +4,7 @@ import java.util.List;
 
 import cz.nigol.zpravodaj.entities.Article;
 import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.zpravodaj.enums.Category;
 
 public interface ArticleService {
     List<Article> getAllArticles();
@@ -14,4 +15,5 @@ public interface ArticleService {
     void deleteArticle(Article article);
     List<Article> getPublishedArticles();
     Article getFeaturedArticle();
+    List<Article> getArticlesByCategory(Category category);
 }
