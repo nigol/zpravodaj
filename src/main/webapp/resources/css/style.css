@@ -1,12 +1,15 @@
 html,body {
     height: 100%;
     margin: 0;
+    display: flex;
+    width: 100%;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 h1 {
@@ -20,6 +23,7 @@ h1 {
 
 header {
     border-bottom: 1px solid black;
+    flex-shrink: 0;
 }
 
 footer {
@@ -33,6 +37,7 @@ footer {
     padding-top: 25px;
     padding-bottom: 25px;
     border-radius: 10px 10px 0px 0px;
+    flex-shrink: 0;
 }
 
 .headerDate {
@@ -111,7 +116,7 @@ footer {
     box-shadow: 3px 3px 5px #888;
     font-family: "Times New Roman", Times, serif;
     font-variant: small-caps;
-}   
+}
 
 @media only screen and (max-width: 700px) {
     #content {
@@ -135,10 +140,11 @@ footer {
     }
 }
 
-@media only screen and (min-width: 701px) {
+@media only screen and (min-width: 980px) {
     #content {
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 960px;
     }
 
     h1 {
