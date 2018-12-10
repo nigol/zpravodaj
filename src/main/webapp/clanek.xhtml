@@ -16,6 +16,11 @@
   </ui:define>
 
   <ui:define name="content">
+    <meta property="og:url"                content="#{singleArticleBean.articleUrl}"/>
+    <meta property="og:type"               content="article"/>
+    <meta property="og:title"              content="#{singleArticleBean.article.label}"/>
+    <meta property="og:description"        content="#{singleArticleBean.article.leadParagraph}"/>
+    
     <h:panelGroup rendered="#{!empty singleArticleBean.article}">
       <h2 style="margin-top: 3em">#{singleArticleBean.article.label}</h2>
 
@@ -37,6 +42,12 @@
       <p style="text-align: right;">
 	&#8718;
       </p>
+
+      <div class="icon-bar">
+	<a href="https://www.facebook.com/sharer/sharer.php?u=#{singleArticleBean.articleUrl}" class="facebook">
+	  <i class="fa fa-facebook"></i>
+	</a>
+      </div>
     </h:panelGroup>
 
     <h:panelGroup rendered="#{empty singleArticleBean.article}">

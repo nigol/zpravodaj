@@ -10,6 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -19,6 +20,14 @@ h1 {
     font-size: 5em;
     font-variant: small-caps;
     margin-bottom: .3em;
+}
+
+label {
+    font-weight: bold;
+    font-size: 90%;
+    text-transform: uppercase;
+    margin-top: 2em;
+    display: inline-block;
 }
 
 header {
@@ -116,6 +125,34 @@ footer {
     box-shadow: 3px 3px 5px #888;
     font-family: "Times New Roman", Times, serif;
     font-variant: small-caps;
+}
+
+.facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.icon-bar {
+    margin: 2em;
+}
+
+.icon-bar a {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
+    width: 1em;
+}
+
+.icon-bar a:hover {
+    background-color: #000;
 }
 
 @media only screen and (max-width: 700px) {

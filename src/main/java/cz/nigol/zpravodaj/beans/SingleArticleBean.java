@@ -1,9 +1,11 @@
 package cz.nigol.zpravodaj.beans;
 
+import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import cz.nigol.zpravodaj.config.Configuration;
 import cz.nigol.zpravodaj.entities.Article;
 import cz.nigol.zpravodaj.services.ArticleService;
 
@@ -12,10 +14,14 @@ import cz.nigol.zpravodaj.services.ArticleService;
 public class SingleArticleBean {
     @Inject
     private ArticleService articleService;
+    @Resource
+    private Configuration configuration;
     private String id;
     private Article article;
+    private String articleUrl;
 
     public void onLoad() {
+	articleUrl = configuration.getUrl() + "clanek.jsf?id=" + id;
 	article = articleService.getArticleById(id);
 	if (article != null) {
 	    article = articleService.loadArticleBody(article);
@@ -48,5 +54,19 @@ public class SingleArticleBean {
      */
     public void setArticle(Article article) {
 	this.article = article;
+    }
+
+    /**
+     * @return the articleUrl
+     */
+    public String getArticleUrl() {
+	return articleUrl;
+    }
+
+    /**
+     * @param articleUrl the articleUrl to set
+     */
+    public void setArticleUrl(String articleUrl) {
+	this.articleUrl = articleUrl;
     }
 }
