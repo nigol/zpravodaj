@@ -28,6 +28,35 @@
       </div>
       
       <ui:include src="inc/footer.xhtml"/>
+
+      <script type="text/javascript">
+	var t;
+
+	function startTimer() {
+	    t = setTimeout(function () {
+		PF('statusDialog').show()
+	    }, 500);
+	}
+
+	function stopTimer() {
+	    clearTimeout(t);
+	}
+      </script>
+
+      <p:ajaxStatus onstart="startTimer();"
+		    onsuccess="PF('statusDialog').hide(); stopTimer();"/>
+
+      <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false"
+		responsive="true"
+		showHeader="false">
+	<div align="center">
+	  <p:graphicImage library="image"
+			  name="erb.png"
+			  style="width: 30%; height: 30%"/>
+	  <br/>
+	  <h:outputText value="Zpracovávám..." style="font-weight: bold"/>
+	</div>
+      </p:dialog>
     </h:body>
   </f:view>
 </html>
