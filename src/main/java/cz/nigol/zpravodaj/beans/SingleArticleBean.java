@@ -7,6 +7,8 @@ import javax.inject.Named;
 
 import cz.nigol.zpravodaj.config.Configuration;
 import cz.nigol.zpravodaj.entities.Article;
+import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.zpravodaj.qualifiers.LoggedUser;
 import cz.nigol.zpravodaj.services.ArticleService;
 
 @Named
@@ -16,6 +18,9 @@ public class SingleArticleBean {
     private ArticleService articleService;
     @Resource
     private Configuration configuration;
+    @Inject
+    @LoggedUser
+    private User user;
     private String id;
     private Article article;
     private String articleUrl;
@@ -25,6 +30,9 @@ public class SingleArticleBean {
 	article = articleService.getArticleById(id);
 	if (article != null) {
 	    article = articleService.loadArticleBody(article);
+	    if (article.getPublishedAt() == null && user.getId() == null) {
+		article = null;
+	    }
 	}
     }
 
