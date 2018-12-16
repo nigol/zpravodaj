@@ -22,6 +22,7 @@ public class PrepareDevData {
 	user.setFullName("Rum Bum");
 	user.setRole(Role.EDITOR);
 	user.setPassword(BCrypt.hashpw("aaa", BCrypt.gensalt()));
+	user.setActive(true);
 	userService.saveUser(user);
     }
 }

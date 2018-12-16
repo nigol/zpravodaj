@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import cz.nigol.zpravodaj.dev.PrepareDevData;
 import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.zpravodaj.enums.Role;
 
 @Named
 @SessionScoped
@@ -30,6 +31,10 @@ public class SessionBean implements Serializable {
 	user = null;
 	facesContext.getExternalContext().invalidateSession();
 	return "/index.xhtml?faces-redirect=true";
+    }
+
+    public boolean isEditor() {
+	return Role.EDITOR.equals(user.getRole());
     }
 
 	/**

@@ -32,7 +32,7 @@ public class LoginBean {
 	} else {
 	    sessionBean.setUser(null);
 	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							   "Chyba",  "Nesprávné přihlašovací údaje."));
+							   "Chyba", "Nesprávné přihlašovací údaje."));
 	    facesContext.getExternalContext().getFlash().setKeepMessages(true);
 	    result = "/login.xhtml?faces-redirect=true";
 	}
