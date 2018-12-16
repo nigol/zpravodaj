@@ -37,7 +37,7 @@
                              immediate="true"/>
 	    <p:commandButton value="Smazat článek" 
                              action="#{articlesBean.delete}"
-			     disabled="#{empty articlesBean.article}"
+			     disabled="#{empty articlesBean.article or !empty articlesBean.article.publishedAt}"
 			     onclick="return confirm('Opravdu smazat?')"
                              update="@form :growl"
 			     icon="fa fa-trash-o"

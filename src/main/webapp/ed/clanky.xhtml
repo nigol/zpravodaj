@@ -79,7 +79,13 @@
             <p:column headerText="Název článku">
               <h:outputText value="#{article.label}"/>
             </p:column>
-	    <p:column headerText="Změněno">
+	    <p:column headerText="Autor"
+		      filterBy="#{article.createdBy.fullName}"
+		      filterMatchMode="contains">
+              <h:outputText value="#{article.createdBy.fullName}"/>
+            </p:column>
+	    <p:column headerText="Změněno"
+		      sortBy="#{article.changedAt}">
               <h:outputText value="#{article.changedAt}">
 		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 	      </h:outputText>
