@@ -1,6 +1,7 @@
 package cz.nigol.zpravodaj.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -36,6 +37,7 @@ public class UsersBean implements Serializable {
     public void newUser() {
 	user = new User();
 	user.setId("new");
+	user.setCreatedAt(new Date());
 	users.add(user);
     }
 
