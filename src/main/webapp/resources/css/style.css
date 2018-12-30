@@ -11,6 +11,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
+    background-image: url("#{resource['image/body-back.png']}");
+    background-position: left top;
+    background-repeat: no-repeat;
 }
 
 h1 {
