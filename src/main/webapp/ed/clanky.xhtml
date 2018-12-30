@@ -59,7 +59,11 @@
 			     resetValues="true"
                              immediate="true"/>
 
-	    <p:column/>
+	      <p:selectBooleanButton value="#{articlesBean.editSource}"
+				     onLabel="Editovat HTML"
+				     offLabel="Editovat text">
+		<p:ajax update="@form"/>
+	      </p:selectBooleanButton>
 	  </p:panelGrid>
 	  
           <p:dataTable id="articles" 
@@ -176,7 +180,14 @@
 	      <h:outputText id="display" style="color: #666; font-size: 80%"/>
 	      
               <p:outputLabel value="Text článku" for="body"/>
-              <p:textEditor id="body" value="#{articlesBean.body}" height="300"/>
+              <p:textEditor id="body"
+			    value="#{articlesBean.body}"
+			    rendered="#{!articlesBean.editSource}"
+			    height="300"/>
+	      <p:inputTextarea rows="10"
+			       cols="30"
+			       value="#{articlesBean.body}"
+			       rendered="#{articlesBean.editSource}"/>
 	    </p:panelGrid>
 	    
 	    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">

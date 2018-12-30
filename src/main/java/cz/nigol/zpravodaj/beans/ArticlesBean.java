@@ -35,6 +35,7 @@ public class ArticlesBean implements Serializable {
     private Article article;
     private String body;
     private List<User> users;
+    private boolean editSource;
 
     public static final String NEW_ID = "NewlyCreatedArticleId";
 
@@ -181,5 +182,19 @@ public class ArticlesBean implements Serializable {
      */
     public void setUsers(List<User> users) {
 	this.users = users;
+    }
+
+    /**
+     * @return the editSource
+     */
+    public boolean isEditSource() {
+	return editSource;
+    }
+
+    /**
+     * @param editSource the editSource to set
+     */
+    public void setEditSource(boolean editSource) {
+	this.editSource = editSource;
     }
 }
