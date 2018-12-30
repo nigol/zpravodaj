@@ -13,5 +13,8 @@
      
      <lifecycle>
         <phase-listener>cz.nigol.zpravodaj.listeners.AuthPhaseListener</phase-listener>
-    </lifecycle>
+     </lifecycle>
+     <lifecycle>
+       <phase-listener>cz.nigol.zpravodaj.listeners.HttpHeaderPhaseListener</phase-listener>
+     </lifecycle>
 </faces-config>
