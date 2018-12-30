@@ -24,8 +24,10 @@ public class SingleArticleBean {
     private String id;
     private Article article;
     private String articleUrl;
+    private Article featuredArticle;
 
     public void onLoad() {
+	featuredArticle = articleService.getFeaturedArticle();
 	articleUrl = configuration.getUrl() + "clanek.jsf?id=" + id;
 	article = articleService.getArticleById(id);
 	if (article != null) {
@@ -76,5 +78,19 @@ public class SingleArticleBean {
      */
     public void setArticleUrl(String articleUrl) {
 	this.articleUrl = articleUrl;
+    }
+
+    /**
+     * @return the featuredArticle
+     */
+    public Article getFeaturedArticle() {
+	return featuredArticle;
+    }
+
+    /**
+     * @param featuredArticle the featuredArticle to set
+     */
+    public void setFeaturedArticle(Article featuredArticle) {
+	this.featuredArticle = featuredArticle;
     }
 }

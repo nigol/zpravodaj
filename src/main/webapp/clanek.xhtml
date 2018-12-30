@@ -22,32 +22,53 @@
 
   <ui:define name="content">    
     <h:panelGroup rendered="#{!empty singleArticleBean.article}">
-      <h2 style="margin-top: 3em">#{singleArticleBean.article.label}</h2>
+      <p:panelGrid layout="grid"
+		   columns="2"
+		   columnClasses="ui-grid-col-10,ui-grid-col-2"
+		   styleClass="ui-noborder">
+	<p:column>
+	  <h2 style="margin-top: 3em">#{singleArticleBean.article.label}</h2>
 
-      <h:panelGroup style="color: #666; text-decoration:underline">
-	<h:outputText value="#{singleArticleBean.article.publishedAt}">
-	  <f:convertDateTime pattern="dd.MM.yyyy"/>
-	</h:outputText>
-	<h:outputText value=" • "/>
-	#{singleArticleBean.article.createdBy.fullName}
-      </h:panelGroup>
-      <p style="font-size: 130%">
-	#{singleArticleBean.article.leadParagraph}
-      </p>
+	  <h:panelGroup style="color: #666; text-decoration:underline">
+	    <h:outputText value="#{singleArticleBean.article.publishedAt}">
+	      <f:convertDateTime pattern="dd.MM.yyyy"/>
+	    </h:outputText>
+	    <h:outputText value=" • "/>
+	    #{singleArticleBean.article.createdBy.fullName}
+	  </h:panelGroup>
+	  <p style="font-size: 130%">
+	    #{singleArticleBean.article.leadParagraph}
+	  </p>
 
-      <div class="articleBody">
-	<h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
-      </div>
+	  <div class="articleBody">
+	    <h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
+	  </div>
 
-      <p style="text-align: right;">
-	&#8718;
-      </p>
+	  <p style="text-align: right;">
+	    &#8718;
+	  </p>
 
-      <div class="icon-bar">
-	<a href="https://www.facebook.com/sharer/sharer.php?u=#{singleArticleBean.articleUrl}" class="facebook">
-	  <i class="fa fa-facebook"></i>
-	</a>
-      </div>
+	  <div class="icon-bar">
+	    <a href="https://www.facebook.com/sharer/sharer.php?u=#{singleArticleBean.articleUrl}" class="facebook">
+	      <i class="fa fa-facebook"></i>
+	    </a>
+	  </div>
+	</p:column>
+
+	<p:column>
+	  <h6 style="margin-top: 8em; border-top: 1px solid #eee; text-align: center; color: #aaa; display: inline-block; padding: 1em">
+	    VYBRANÝ ČLÁNEK
+	  </h6>
+	  <h:link outcome="/clanek.xhtml"
+		  rendered="#{!empty singleArticleBean.featuredArticle}"
+		  style="text-decoration: none">
+	    <f:param name="id" value="#{singleArticleBean.featuredArticle.id}"/>
+	    <h5 style="color: #666">#{singleArticleBean.featuredArticle.label}</h5>
+	    <img src="#{singleArticleBean.featuredArticle.featuredUrl}" style="max-width: 100%"></img>
+	    <p style="font-size: smaller; color: #666">#{singleArticleBean.featuredArticle.leadParagraph}</p>
+	  </h:link>
+	</p:column>
+      </p:panelGrid>
     </h:panelGroup>
 
     <h:panelGroup rendered="#{empty singleArticleBean.article}">
