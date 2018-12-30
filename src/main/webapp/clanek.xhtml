@@ -7,6 +7,11 @@
                 xmlns:p="http://primefaces.org/ui">
 
   <ui:param name="title" value="#{singleArticleBean.article.label} - Tršický zpravodaj"/>
+  <ui:param name="og_url" value="#{singleArticleBean.articleUrl}"/>
+  <ui:param name="og_type" value="article"/>
+  <ui:param name="og_title" value="#{singleArticleBean.article.label}"/>
+  <ui:param name="og_description" value="#{singleArticleBean.article.leadParagraph}"/>
+  <ui:param name="og_image" value="#{singleArticleBean.article.featuredUrl}"/>
 
   <ui:define name="metadata">
     <f:metadata>
@@ -15,12 +20,7 @@
     </f:metadata>
   </ui:define>
 
-  <ui:define name="content">
-    <meta property="og:url"                content="#{singleArticleBean.articleUrl}"/>
-    <meta property="og:type"               content="article"/>
-    <meta property="og:title"              content="#{singleArticleBean.article.label}"/>
-    <meta property="og:description"        content="#{singleArticleBean.article.leadParagraph}"/>
-    
+  <ui:define name="content">    
     <h:panelGroup rendered="#{!empty singleArticleBean.article}">
       <h2 style="margin-top: 3em">#{singleArticleBean.article.label}</h2>
 
