@@ -18,4 +18,5 @@ public interface ArticleService {
     Article getFeaturedArticle();
     List<Article> getArticlesByCategory(Category category);
     void generateRss(OutputStream outputStream);
+    List<Article> getLatestPublishedArticles();
 }

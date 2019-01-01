@@ -174,4 +174,11 @@ public class ArticleServiceImpl implements ArticleService {
 	element.appendChild(document.createTextNode("Tršický Zpravodaj. Periodický tisk územního samosprávného celku. Obec Tršice."));
 	root.appendChild(element);
     }
+
+    @Override
+    public List<Article> getLatestPublishedArticles() {
+	TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_PUBLISHED, Article.class);
+	typedQuery.setMaxResults(20);
+	return new ArrayList<>(typedQuery.getResultList());
+    }
 }

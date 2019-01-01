@@ -31,7 +31,7 @@ public class IndexBean {
 
     @PostConstruct
     public void init() {
-	articles = articleService.getPublishedArticles();
+	articles = articleService.getLatestPublishedArticles();
 	featuredArticle = articleService.getFeaturedArticle();
     }
 
