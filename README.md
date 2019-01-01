@@ -1,7 +1,22 @@
 # Tršický zpravodaj
-Repozitář pro Tršický zpravodaj.
+Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršice. Existuje jak v tištěné, tak i online verzi. Tento repozitář obsahuje zdrojové kódy online verze magazínu.
 
-Nastavení:
+## Changelog
+### Verze 1.0
+
+* První dostupná verze.
+
+##Nastavení
+
+Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _zpravodajdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou.
+
+```
+<Resource id="zpravodajdb" type="DataSource">
+      JdbcDriver = org.hsqldb.jdbcDriver
+      JdbcUrl = jdbc:hsqldb:file:hsqldb
+</Resource>
+```
+
 V souboru _/WEB-INF/resources.xml_ je potřeba nastavit korektní URL aplikace. Například:
 
 ```
