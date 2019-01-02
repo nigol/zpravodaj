@@ -59,26 +59,17 @@ public class ArticlesBean implements Serializable {
     }
 
     public void save() {
-	boolean isNew = NEW_ID.equals(article.getId());
-	boolean isUnique = true;
 	article.setChangedAt(new Date());
-	if (isNew) {
+	if (NEW_ID.equals(article.getId())) {
 	    article.setCreatedBy(user);
 	    article.setId(article.getLabel());
-	    isUnique = articleService.getArticleById(article.getLabel()) == null;
 	}
 	if ("".equals(article.getFeaturedUrl())) {
 	    article.setFeaturedUrl(null);
 	}
-	if (isUnique) {
-	    articleService.saveArticle(article, body);
-	    prepareArticleLists();
-	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Článek byl uložen."));
-	} else {
-	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Chyba při ukládání",
-							   "Článek s tímto nadpisem již existuje."));
-	}
-	
+	articleService.saveArticle(article, body);
+	prepareArticleLists();
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Článek byl uložen."));
     }
 
     public void publish(Article articleToPublish) {
