@@ -7,7 +7,6 @@
 auto-save-list
 tramp
 .\#*
-resources.xml
 
 # Eclipse
 .classpath

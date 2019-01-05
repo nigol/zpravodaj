@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="config" class-name="cz.nigol.zpravodaj.config.Configuration">
+    url = https://www.trsice.cz/zpravodaj/
+  </Resource>
+</resources>
