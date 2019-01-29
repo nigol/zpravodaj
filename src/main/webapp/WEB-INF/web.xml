@@ -46,17 +46,17 @@
     
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/chyba.html</location>
+        <location>/chyba.jsf</location>
     </error-page>
 
     <error-page>
         <error-code>404</error-code>
-        <location>/chyba.html</location>
+        <location>/chyba.jsf</location>
     </error-page>
     
     <error-page>
         <error-code>500</error-code>
-        <location>/chyba.html</location>
+        <location>/chyba.jsf</location>
     </error-page>
     
     <security-constraint>
