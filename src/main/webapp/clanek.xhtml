@@ -20,7 +20,7 @@
     </f:metadata>
   </ui:define>
 
-  <ui:define name="content">    
+  <ui:define name="content">
     <h:panelGroup rendered="#{!empty singleArticleBean.article}">
       <p:panelGrid layout="grid"
 		   columns="2"
@@ -51,6 +51,9 @@
 	  <div class="icon-bar">
 	    <a href="https://www.facebook.com/sharer/sharer.php?u=#{singleArticleBean.articleUrl}" class="facebook">
 	      <i class="fa fa-facebook"></i>
+	    </a>
+	    <a href="#" onclick="window.print()" class="print">
+	      <i class="fa fa-print"></i>
 	    </a>
 	  </div>
 	</p:column>
