@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 	    })
 
 @Entity
-@Table(name = "SVJ_FILE_META")
+@Table(name = "ZPR_FILE_META")
 public class FileMetadata implements Serializable {
     private static final long serialVersionUID = 1L;
 

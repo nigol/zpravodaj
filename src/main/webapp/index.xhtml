@@ -46,6 +46,13 @@
 	    #{article.category.label}
 	  </div>
 	  <h3>#{article.label}</h3>
+	  <p style="color: #666; text-decoration:underline">
+	    <h:outputText value="#{article.publishedAt}">
+	      <f:convertDateTime pattern="dd.MM.yyyy"/>
+	    </h:outputText>
+	    <h:outputText value=" • "/>
+	    #{article.createdBy.fullName}
+	  </p>
 	  <p>
 	    #{article.leadParagraph}
 	  </p>

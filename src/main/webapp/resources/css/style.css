@@ -152,6 +152,11 @@ footer {
     color: white;
 }
 
+.print {
+    background: #55ACEE;
+    color: white;
+}
+
 .icon-bar {
     margin: 2em;
 }
@@ -169,6 +174,11 @@ footer {
 
 .icon-bar a:hover {
     background-color: #000;
+}
+
+#content {
+    font-size: 90%;
+    line-height: 1.5;
 }
 
 @media only screen and (max-width: 700px) {
@@ -213,5 +223,21 @@ footer {
 	width: 4.3em;
 	height: 5em;
 	margin-top: 4em;
+    }
+}
+
+@media print {
+    h1 {
+	color: black;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 2em;
+	font-variant: small-caps;
+	margin-bottom: .1em;
+    }
+    .logo img {
+	width: 1.7em;
+	height: 2em;
+	margin-top: 1.7em;
     }
 }
