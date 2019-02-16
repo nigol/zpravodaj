@@ -46,7 +46,7 @@
 	    #{article.category.label}
 	  </div>
 	  <h3>#{article.label}</h3>
-	  <p style="color: #666; text-decoration:underline">
+	  <p style="color: #666">
 	    <h:outputText value="#{article.publishedAt}">
 	      <f:convertDateTime pattern="dd.MM.yyyy"/>
 	    </h:outputText>
@@ -55,6 +55,9 @@
 	  </p>
 	  <p>
 	    #{article.leadParagraph}
+	  </p>
+	  <p style="text-decoration: underline; color: #666">
+	    Číst dále
 	  </p>
 	</h:link>
       </p:dataGrid>

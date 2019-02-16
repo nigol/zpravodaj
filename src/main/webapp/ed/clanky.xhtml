@@ -97,7 +97,8 @@
 	    <p:column headerText="Kategorie">
               <h:outputText value="#{article.category}"/>
             </p:column>
-	    <p:column headerText="Publikováno">
+	    <p:column headerText="Publikováno"
+		      sortBy="#{article.publishedAt}">
               <h:outputText value="#{article.publishedAt}">
 		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 	      </h:outputText>
