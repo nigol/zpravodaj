@@ -27,34 +27,37 @@
 		   columnClasses="ui-grid-col-10,ui-grid-col-2"
 		   styleClass="ui-noborder">
 	<p:column>
-	  <h2 style="margin-top: 3em">#{singleArticleBean.article.label}</h2>
+	  <h:panelGroup id = "article" layout="block">
+	    <h2 style="margin-top: 3em">#{singleArticleBean.article.label}</h2>
 
-	  <h:panelGroup style="color: #666; text-decoration:underline">
-	    <h:outputText value="#{singleArticleBean.article.publishedAt}">
-	      <f:convertDateTime pattern="dd.MM.yyyy"/>
-	    </h:outputText>
-	    <h:outputText value=" • "/>
-	    #{singleArticleBean.article.createdBy.fullName}
+	    <h:panelGroup style="color: #666; text-decoration:underline">
+	      <h:outputText value="#{singleArticleBean.article.publishedAt}">
+		<f:convertDateTime pattern="dd.MM.yyyy"/>
+	      </h:outputText>
+	      <h:outputText value=" • "/>
+	      #{singleArticleBean.article.createdBy.fullName}
+	    </h:panelGroup>
+	    <p style="font-size: 130%">
+	      #{singleArticleBean.article.leadParagraph}
+	    </p>
+
+	    <div class="articleBody">
+	      <h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
+	    </div>
+
+	    <p style="text-align: right;">
+	      &#8718;
+	    </p>
 	  </h:panelGroup>
-	  <p style="font-size: 130%">
-	    #{singleArticleBean.article.leadParagraph}
-	  </p>
-
-	  <div class="articleBody">
-	    <h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
-	  </div>
-
-	  <p style="text-align: right;">
-	    &#8718;
-	  </p>
 
 	  <div class="icon-bar">
 	    <a href="https://www.facebook.com/sharer/sharer.php?u=#{singleArticleBean.articleUrl}" class="facebook">
 	      <i class="fa fa-facebook"></i>
 	    </a>
-	    <a href="#" onclick="window.print()" class="print">
+	    <p:commandLink styleClass="print" style="font-size: 20px !important; margin-left: 5px !important">
 	      <i class="fa fa-print"></i>
-	    </a>
+	      <p:printer target="article"/>
+	    </p:commandLink>
 	  </div>
 	</p:column>
 
