@@ -45,22 +45,26 @@
 	  <div class="categoryArticle">
 	    #{article.category.label}
 	  </div>
-	  <h3>#{article.label}</h3>
-	  <p style="color: #666">
-	    <h:outputText value="#{article.publishedAt}">
-	      <f:convertDateTime pattern="dd.MM.yyyy"/>
-	    </h:outputText>
-	    <h:outputText value=" • "/>
-	    #{article.createdBy.fullName}
-	  </p>
-	  <p>
-	    #{article.leadParagraph}
-	  </p>
-	  <p style="text-decoration: underline; color: #666">
-	    Číst dále
-	  </p>
-	</h:link>
-      </p:dataGrid>
-    </p:panelGrid>
-  </ui:define>
-</ui:composition>
+      <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center;">
+          #{article.label}
+      </h3>
+      <p style="text-align: center;border-top: 1px black solid;font-family: serif;font-variant: small-caps;width: 80%;margin-left: auto;margin-right: auto;">
+          <h:outputText value="#{article.publishedAt}">
+              <f:convertDateTime pattern="dd.MM.yyyy"/>
+          </h:outputText>
+          <br/>
+          <b>
+              #{article.createdBy.fullName}
+          </b>
+      </p> 
+      <p>
+          #{article.leadParagraph}
+      </p>
+      <p style="text-decoration: underline; color: #666">
+          Číst dále
+      </p>
+  </h:link>
+                 </p:dataGrid>
+             </p:panelGrid>
+         </ui:define>
+     </ui:composition>
