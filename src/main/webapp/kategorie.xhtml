@@ -27,24 +27,28 @@
 		  layout="grid"
 		  style="margin-top: 2em; margin-bottom: 1em"
 		  emptyMessage="Není k dispozici žádný článek.">
-	<h:link outcome="/clanek.xhtml" style="text-decoration: none">
-	  <f:param name="id" value="#{article.id}"/>
-	  <div class="categoryArticle">
-	    #{article.category.label}
-	  </div>
-	  <h3>#{article.label}</h3>
-	  <p style="color: #666; text-decoration:underline">
-	    <h:outputText value="#{article.publishedAt}">
-	      <f:convertDateTime pattern="dd.MM.yyyy"/>
-	    </h:outputText>
-	    <h:outputText value=" • "/>
-	    #{article.createdBy.fullName}
-	  </p>
-	  <p>
-	    #{article.leadParagraph}
-	  </p>
-	</h:link>
-      </p:dataGrid>
-    </p:panelGrid>
+      <h:link outcome="/clanek.xhtml" style="text-decoration: none">
+          <f:param name="id" value="#{article.id}"/>
+          <h3 style="font-family: serif; font-size: 1.5em; font-variant: small-caps; font-weight: normal; text-align: center;">
+              #{article.label}
+          </h3>
+          <p style="text-align: center;border-top: 1px black solid;font-family: serif;font-variant: small-caps;width: 80%;margin-left: auto;margin-right: auto;">
+              <h:outputText value="#{article.publishedAt}">
+                  <f:convertDateTime pattern="dd.MM.yyyy"/>
+              </h:outputText>
+              <br/>
+              <b>
+                  #{article.createdBy.fullName}
+              </b>
+          </p> 
+          <p>
+              #{article.leadParagraph}
+          </p>
+          <p style="text-decoration: underline; color: #666">
+              Číst dále
+          </p>
+      </h:link>
+  </p:dataGrid>
+  </p:panelGrid>
   </ui:define>
 </ui:composition>
