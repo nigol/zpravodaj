@@ -52,6 +52,19 @@ footer {
     flex-shrink: 0;
 }
 
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.categories a:visited {
+    color: #fff;
+}
+
+.categories a:hover {
+    color: #fff;
+}
+
 .headerDate {
     float: left;
     font-size: 85%;
@@ -95,6 +108,10 @@ footer {
 
 .categories a:hover {
     color: #444;
+}
+
+.articleBody img {
+    max-width: 95%;
 }
 
 .articleBody .ql-align-center {

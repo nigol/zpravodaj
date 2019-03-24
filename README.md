@@ -2,6 +2,10 @@
 Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršice. Existuje jak v tištěné, tak i online verzi. Tento repozitář obsahuje zdrojové kódy online verze magazínu.
 
 ## Changelog
+### Verze 1.2
+
+* Upraveno formátování obrázků v článku, změněna patička webu, RSS feed přidán jako alternate do hlavičky.
+
 ### Verze 1.1
 
 * Změněn vzhled úvodní strany. Nasazeno do produkce.
@@ -10,14 +14,14 @@ Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršic
 
 * První dostupná verze.
 
-##Nastavení
+## Nastavení
 
 Je třeba nastavit správný resource pro přístup k databázi. Aplikace očekává, že bude nastaveno _zpravodajdb_. Toto je možné nastavit buď v souboru _/WEB-INF/resources.xml_ nebo přímo v _tomee.xml_ souboru. Zde je příklad nastavení pro HSQL databázi - v produkci pravděpodobně použijete jinou.
 
 ```
 <Resource id="zpravodajdb" type="DataSource">
-      JdbcDriver = org.hsqldb.jdbcDriver
-      JdbcUrl = jdbc:hsqldb:file:hsqldb
+JdbcDriver = org.hsqldb.jdbcDriver
+JdbcUrl = jdbc:hsqldb:file:hsqldb
 </Resource>
 ```
 
@@ -25,6 +29,6 @@ V souboru _/WEB-INF/resources.xml_ je potřeba nastavit korektní URL aplikace. 
 
 ```
 <Resource id="config" class-name="cz.nigol.zpravodaj.config.Configuration">
-      url = https://www.trsice.cz/zpravodaj/
+url = https://www.trsice.cz/zpravodaj/
 </Resource>
 ```

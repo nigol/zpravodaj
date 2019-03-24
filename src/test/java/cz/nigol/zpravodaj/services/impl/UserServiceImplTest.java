@@ -28,34 +28,34 @@ public class UserServiceImplTest {
 
     @Test
     public void testGetAllUsers() {
-	when(entityManager.createNamedQuery(User.GET_ALL, User.class)).thenReturn(typedQuery);
-	when(typedQuery.getResultList()).thenReturn(new ArrayList<>());
-	userService.getAllUsers();
-	verify(entityManager).createNamedQuery(User.GET_ALL, User.class);
-	verify(typedQuery).getResultList();
+        when(entityManager.createNamedQuery(User.GET_ALL, User.class)).thenReturn(typedQuery);
+        when(typedQuery.getResultList()).thenReturn(new ArrayList<>());
+        userService.getAllUsers();
+        verify(entityManager).createNamedQuery(User.GET_ALL, User.class);
+        verify(typedQuery).getResultList();
     }
 
     @Test
     public void testGetUserById() {
-	when(entityManager.find(User.class, "")).thenReturn(new User());
-	userService.getUserById("");
-	verify(entityManager).find(User.class, "");
+        when(entityManager.find(User.class, "")).thenReturn(new User());
+        userService.getUserById("");
+        verify(entityManager).find(User.class, "");
     }
 
     @Test
     public void testSaveUser() {
-	User user = new User();
-	when(entityManager.merge(user)).thenReturn(user);
-	userService.saveUser(user);
-	verify(entityManager).merge(user);
+        User user = new User();
+        when(entityManager.merge(user)).thenReturn(user);
+        userService.saveUser(user);
+        verify(entityManager).merge(user);
     }
 
     @Test
     public void testGetActiveUsers() {
-	when(entityManager.createNamedQuery(User.GET_ACTIVE, User.class)).thenReturn(typedQuery);
-	when(typedQuery.getResultList()).thenReturn(new ArrayList<>());
-	userService.getActiveUsers();
-	verify(entityManager).createNamedQuery(User.GET_ACTIVE, User.class);
-	verify(typedQuery).getResultList();
+        when(entityManager.createNamedQuery(User.GET_ACTIVE, User.class)).thenReturn(typedQuery);
+        when(typedQuery.getResultList()).thenReturn(new ArrayList<>());
+        userService.getActiveUsers();
+        verify(entityManager).createNamedQuery(User.GET_ACTIVE, User.class);
+        verify(typedQuery).getResultList();
     }
 }

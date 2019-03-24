@@ -22,11 +22,11 @@ public class ArticleLabelValidator implements Validator {
 
     @Override
     public void validate(FacesContext arg0, UIComponent arg1, Object arg2) throws ValidatorException {
-	String label = (String) arg2;
-	if (ArticlesBean.NEW_ID.equals(articlesBean.getArticle().getId()) &&
-	    articleService.getArticleById(label) != null) {
-	    throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							  "Článek s tímto jménem již existuje.", null));
-	}
+        String label = (String) arg2;
+        if (ArticlesBean.NEW_ID.equals(articlesBean.getArticle().getId()) &&
+                articleService.getArticleById(label) != null) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Článek s tímto jménem již existuje.", null));
+                }
     }
 }

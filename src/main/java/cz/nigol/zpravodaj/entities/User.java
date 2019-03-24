@@ -20,9 +20,9 @@ import javax.persistence.TemporalType;
 import cz.nigol.zpravodaj.enums.Role;
 
 @NamedQueries({
-	@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.id ASC"),
-	    @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
-    })
+@NamedQuery(name=User.GET_ALL, query="SELECT u FROM User u ORDER BY u.id ASC"),
+    @NamedQuery(name=User.GET_ACTIVE, query="SELECT u FROM User u WHERE u.active = true"),
+})
 @Entity
 @Table(name = "ZPR_USER")
 public class User implements Serializable {
@@ -44,10 +44,10 @@ public class User implements Serializable {
     private Role role;
 
     @Column(name="EMAIL", columnDefinition="VARCHAR(300)")
-    private String email;
+        private String email;
 
     @Column(name="FULL_NAME", columnDefinition="VARCHAR(200)")
-    private String fullName;
+        private String fullName;
 
     @Column(name="PASSWORD")
     private String password;
@@ -58,117 +58,117 @@ public class User implements Serializable {
     @OneToMany(mappedBy="createdBy")
     private List<Article> articles;
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the createdAt
-	 */
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    /**
+     * @return the createdAt
+     */
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	/**
-	 * @param createdAt the createdAt to set
-	 */
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    /**
+     * @param createdAt the createdAt to set
+     */
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	/**
-	 * @return the role
-	 */
-	public Role getRole() {
-		return role;
-	}
+    /**
+     * @return the role
+     */
+    public Role getRole() {
+        return role;
+    }
 
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    /**
+     * @param role the role to set
+     */
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	/**
-	 * @return the fullName
-	 */
-	public String getFullName() {
-		return fullName;
-	}
+    /**
+     * @return the fullName
+     */
+    public String getFullName() {
+        return fullName;
+    }
 
-	/**
-	 * @param fullName the fullName to set
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    /**
+     * @param fullName the fullName to set
+     */
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
 
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	/**
-	 * @return the active
-	 */
-	public boolean isActive() {
-		return active;
-	}
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
 
-	/**
-	 * @param active the active to set
-	 */
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-	/**
-	 * @return the articles
-	 */
-	public List<Article> getArticles() {
-		return articles;
-	}
+    /**
+     * @return the articles
+     */
+    public List<Article> getArticles() {
+        return articles;
+    }
 
-	/**
-	 * @param articles the articles to set
-	 */
-	public void setArticles(List<Article> articles) {
-		this.articles = articles;
-	}
+    /**
+     * @param articles the articles to set
+     */
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -177,7 +177,7 @@ public class User implements Serializable {
         User user = (User) o;
         return id.equals((user.getId()));
     }
- 
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

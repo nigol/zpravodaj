@@ -19,11 +19,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-	@NamedQuery(name=FileMetadata.GET_ALL,
-		    query="SELECT f FROM Filemetadata f"),
-	    @NamedQuery(name=FileMetadata.GET_BY_USER,
-			query="SELECT f FROM FileMetadata f WHERE f.user = :user ORDER BY f.createdAt DESC"),
-	    })
+@NamedQuery(name=FileMetadata.GET_ALL,
+query="SELECT f FROM Filemetadata f"),
+    @NamedQuery(name=FileMetadata.GET_BY_USER,
+    query="SELECT f FROM FileMetadata f WHERE f.user = :user ORDER BY f.createdAt DESC"),
+})
 
 @Entity
 @Table(name = "ZPR_FILE_META")
@@ -33,7 +33,7 @@ public class FileMetadata implements Serializable {
     public static final String GET_ALL = "FileMetadata.getAll";
     public static final String GET_BY_USER = "FileMetadata.GET_BY_USER";
 
-	public static final String USER_PARAM = "user";
+    public static final String USER_PARAM = "user";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -51,64 +51,64 @@ public class FileMetadata implements Serializable {
     private User user;
 
     @Column(name = "CREATED_AT")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date createdAt;
 
     @PrePersist
     public void prepareData() {
-	createdAt = new Date();
+        createdAt = new Date();
     }
 
     public Date getCreatedAt() {
-	return createdAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
-	this.createdAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     public User getUser() {
-	return user;
+        return user;
     }
 
     public void setUser(User user) {
-	this.user = user;
+        this.user = user;
     }
 
     public String getDescription() {
-	return description;
+        return description;
     }
 
     public void setDescription(String description) {
-	this.description = description;
+        this.description = description;
     }
 
     public String getPath() {
-	return path;
+        return path;
     }
 
     public void setPath(String path) {
-	this.path = path;
+        this.path = path;
     }
 
     public long getId() {
-	return id;
+        return id;
     }
 
     public void setId(long id) {
-	this.id = id;
+        this.id = id;
     }
 
     @Override
     public boolean equals(Object o) {
-	if (this == o) return true;
-	if (!(o instanceof FileMetadata)) return false;
-	FileMetadata fileMetadata = (FileMetadata) o;
-	return id == fileMetadata.getId();
+        if (this == o) return true;
+        if (!(o instanceof FileMetadata)) return false;
+        FileMetadata fileMetadata = (FileMetadata) o;
+        return id == fileMetadata.getId();
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(id);
+        return Objects.hash(id);
     }
 }

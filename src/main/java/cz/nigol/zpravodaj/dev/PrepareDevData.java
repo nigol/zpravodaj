@@ -17,12 +17,12 @@ public class PrepareDevData {
     private UserService userService;
 
     public void createData() {
-	User user = new User();
-	user.setId("aaa");
-	user.setFullName("Rum Bum");
-	user.setRole(Role.EDITOR);
-	user.setPassword(BCrypt.hashpw("aaa", BCrypt.gensalt()));
-	user.setActive(true);
-	userService.saveUser(user);
+        User user = new User();
+        user.setId("aaa");
+        user.setFullName("Rum Bum");
+        user.setRole(Role.EDITOR);
+        user.setPassword(BCrypt.hashpw("aaa", BCrypt.gensalt()));
+        user.setActive(true);
+        userService.saveUser(user);
     }
 }

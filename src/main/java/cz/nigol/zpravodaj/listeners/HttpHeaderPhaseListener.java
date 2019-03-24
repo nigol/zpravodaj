@@ -26,8 +26,8 @@ public class HttpHeaderPhaseListener implements PhaseListener {
         response.addHeader("X-Frame-Options", "SAMEORIGIN");
         // prevent java script execution for certain content types
         response.addHeader("X-Content-Type-Options", "nosniff");
-	// control referrer
-	response.addHeader("Referrer-Policy", "no-referrer-when-downgrade");
+        // control referrer
+        response.addHeader("Referrer-Policy", "no-referrer-when-downgrade");
     }
 
     @Override

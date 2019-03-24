@@ -46,61 +46,61 @@ public class FilesBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	user = userService.getUserById(user.getId());
-	files = fileMetadataService.getByUser(user);
+        user = userService.getUserById(user.getId());
+        files = fileMetadataService.getByUser(user);
     }
 
     public String endOfPath(String path) {
-	return path.substring(path.lastIndexOf('/') + 1, path.length()).split("\\d{8,}")[1];
+        return path.substring(path.lastIndexOf('/') + 1, path.length()).split("\\d{8,}")[1];
     }
 
     public void newFile() {
-	file = new FileMetadata();
+        file = new FileMetadata();
     }
 
     public void handleUpload(FileUploadEvent event) {
-	file.setCreatedAt(new Date());
-	file.setUser(user);
-	UploadedFile uploadedFile = event.getFile();
-	Date date = new Date();
-	file.setPath("/upload/" + date.getTime() + uploadedFile.getFileName());
-	try {
-	    file = fileMetadataService.save(file, path, uploadedFile.getContents());
-	} catch (UploadFailedException e) {
-	    log.error(file.getPath(), e);
-	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							   "Chyba", "Chyba při nahrávání souboru."));
-	}
-	file = null;
-	init();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo",  "Soubor byl uložen."));
+        file.setCreatedAt(new Date());
+        file.setUser(user);
+        UploadedFile uploadedFile = event.getFile();
+        Date date = new Date();
+        file.setPath("/upload/" + date.getTime() + uploadedFile.getFileName());
+        try {
+            file = fileMetadataService.save(file, path, uploadedFile.getContents());
+        } catch (UploadFailedException e) {
+            log.error(file.getPath(), e);
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Chyba", "Chyba při nahrávání souboru."));
+        }
+        file = null;
+        init();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo",  "Soubor byl uložen."));
     }
 
     /**
      * @return the files
      */
     public List<FileMetadata> getFiles() {
-	return files;
+        return files;
     }
 
     /**
      * @param files the files to set
      */
     public void setFiles(List<FileMetadata> files) {
-	this.files = files;
+        this.files = files;
     }
 
     /**
      * @return the file
      */
     public FileMetadata getFile() {
-	return file;
+        return file;
     }
 
     /**
      * @param file the file to set
      */
     public void setFile(FileMetadata file) {
-	this.file = file;
+        this.file = file;
     }
 }

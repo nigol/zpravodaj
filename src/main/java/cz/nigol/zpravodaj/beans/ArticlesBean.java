@@ -41,151 +41,151 @@ public class ArticlesBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	user = userService.getUserById(user.getId());
-	users = userService.getAllUsers();
-	prepareArticleLists();
+        user = userService.getUserById(user.getId());
+        users = userService.getAllUsers();
+        prepareArticleLists();
     }
 
     private void prepareArticleLists() {
-	articles = articleService.getAllArticles();
-	myArticles = articleService.getArticlesByUser(user);
+        articles = articleService.getAllArticles();
+        myArticles = articleService.getArticlesByUser(user);
     }
 
     public void newArticle() {
-	article = new Article();
-	article.setId(NEW_ID);
-	body = "";
-	myArticles.add(article);
+        article = new Article();
+        article.setId(NEW_ID);
+        body = "";
+        myArticles.add(article);
     }
 
     public void save() {
-	article.setChangedAt(new Date());
-	if (NEW_ID.equals(article.getId())) {
-	    article.setCreatedBy(user);
-	    article.setId(article.getLabel());
-	}
-	if ("".equals(article.getFeaturedUrl())) {
-	    article.setFeaturedUrl(null);
-	}
-	articleService.saveArticle(article, body);
-	prepareArticleLists();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Článek byl uložen."));
+        article.setChangedAt(new Date());
+        if (NEW_ID.equals(article.getId())) {
+            article.setCreatedBy(user);
+            article.setId(article.getLabel());
+        }
+        if ("".equals(article.getFeaturedUrl())) {
+            article.setFeaturedUrl(null);
+        }
+        articleService.saveArticle(article, body);
+        prepareArticleLists();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uloženo", "Článek byl uložen."));
     }
 
     public void publish(Article articleToPublish) {
-	Article art = articleService.loadArticleBody(articleToPublish);
-	art.setPublishedAt(new Date());
-	articleService.saveArticle(art, art.getBody());
-	prepareArticleLists();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Publikováno", "Publikováno s dnešním datem."));
+        Article art = articleService.loadArticleBody(articleToPublish);
+        art.setPublishedAt(new Date());
+        articleService.saveArticle(art, art.getBody());
+        prepareArticleLists();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Publikováno", "Publikováno s dnešním datem."));
     }
 
     public void unpublish(Article articleToPublish) {
-	Article art = articleService.loadArticleBody(articleToPublish);
-	art.setPublishedAt(null);
-	articleService.saveArticle(art, art.getBody());
-	prepareArticleLists();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Staženo", "Publikace byla zrušena."));
+        Article art = articleService.loadArticleBody(articleToPublish);
+        art.setPublishedAt(null);
+        articleService.saveArticle(art, art.getBody());
+        prepareArticleLists();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Staženo", "Publikace byla zrušena."));
     }
 
     public void delete() {
-	articleService.deleteArticle(article);
-	article = null;
-	body = null;
-	prepareArticleLists();
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Smazáno", "Článek byl smazán."));
+        articleService.deleteArticle(article);
+        article = null;
+        body = null;
+        prepareArticleLists();
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Smazáno", "Článek byl smazán."));
     }
 
     public void onArticleSelect() {
-	article = articleService.loadArticleBody(article);
-	body = article.getBody();
+        article = articleService.loadArticleBody(article);
+        body = article.getBody();
     }
 
     public boolean isPreviewAllowed() {
-	return article != null && !NEW_ID.equals(article.getId());
+        return article != null && !NEW_ID.equals(article.getId());
     }
 
     /**
      * @return the articles
      */
     public List<Article> getArticles() {
-	return articles;
+        return articles;
     }
 
     /**
      * @param articles the articles to set
      */
     public void setArticles(List<Article> articles) {
-	this.articles = articles;
+        this.articles = articles;
     }
 
     /**
      * @return the myArticles
      */
     public List<Article> getMyArticles() {
-	return myArticles;
+        return myArticles;
     }
 
     /**
      * @param myArticles the myArticles to set
      */
     public void setMyArticles(List<Article> myArticles) {
-	this.myArticles = myArticles;
+        this.myArticles = myArticles;
     }
 
     /**
      * @return the article
      */
     public Article getArticle() {
-	return article;
+        return article;
     }
 
     /**
      * @param article the article to set
      */
     public void setArticle(Article article) {
-	this.article = article;
+        this.article = article;
     }
 
     /**
      * @return the body
      */
     public String getBody() {
-	return body;
+        return body;
     }
 
     /**
      * @param body the body to set
      */
     public void setBody(String body) {
-	this.body = body;
+        this.body = body;
     }
 
     /**
      * @return the users
      */
     public List<User> getUsers() {
-	return users;
+        return users;
     }
 
     /**
      * @param users the users to set
      */
     public void setUsers(List<User> users) {
-	this.users = users;
+        this.users = users;
     }
 
     /**
      * @return the editSource
      */
     public boolean isEditSource() {
-	return editSource;
+        return editSource;
     }
 
     /**
      * @param editSource the editSource to set
      */
     public void setEditSource(boolean editSource) {
-	this.editSource = editSource;
+        this.editSource = editSource;
     }
 }

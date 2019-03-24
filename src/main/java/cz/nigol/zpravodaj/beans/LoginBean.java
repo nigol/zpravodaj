@@ -23,47 +23,47 @@ public class LoginBean {
     private String loginName;
     private String password;
 
-	public String login() {
-	String result;
-	User user = userService.getUserById(loginName);
-	if (user != null && user.isActive() && BCrypt.checkpw(password, user.getPassword())) {
-	    sessionBean.setUser(user);
-	    result = "/au/moje-clanky.xhtml?faces-redirect=true";
-	} else {
-	    sessionBean.setUser(null);
-	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							   "Chyba", "Nesprávné přihlašovací údaje."));
-	    facesContext.getExternalContext().getFlash().setKeepMessages(true);
-	    result = "/login.xhtml?faces-redirect=true";
-	}
-	return result;
+    public String login() {
+        String result;
+        User user = userService.getUserById(loginName);
+        if (user != null && user.isActive() && BCrypt.checkpw(password, user.getPassword())) {
+            sessionBean.setUser(user);
+            result = "/au/moje-clanky.xhtml?faces-redirect=true";
+        } else {
+            sessionBean.setUser(null);
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Chyba", "Nesprávné přihlašovací údaje."));
+            facesContext.getExternalContext().getFlash().setKeepMessages(true);
+            result = "/login.xhtml?faces-redirect=true";
+        }
+        return result;
     }
 
     /**
      * @return the loginName
      */
     public String getLoginName() {
-	return loginName;
+        return loginName;
     }
 
     /**
      * @param loginName the loginName to set
      */
     public void setLoginName(String loginName) {
-	this.loginName = loginName;
+        this.loginName = loginName;
     }
 
     /**
      * @return the password
      */
     public String getPassword() {
-	return password;
+        return password;
     }
 
     /**
      * @param password the password to set
      */
     public void setPassword(String password) {
-	this.password = password;
+        this.password = password;
     }
 }

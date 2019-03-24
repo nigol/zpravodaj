@@ -31,111 +31,111 @@ public class IndexBean {
 
     @PostConstruct
     public void init() {
-	articles = articleService.getLatestPublishedArticles();
-	featuredArticle = articleService.getFeaturedArticle();
+        articles = articleService.getLatestPublishedArticles();
+        featuredArticle = articleService.getFeaturedArticle();
     }
 
     public void onLoad() throws IOException {
-	if (rss != null && "true".equals(rss)) {
-	    generateRssChannel();
-	}
-	if (categoryId != null) {
-	    category = Category.valueOf(categoryId);
-	    categoryArticles = articleService.getArticlesByCategory(category);
-	}
+        if (rss != null && "true".equals(rss)) {
+            generateRssChannel();
+        }
+        if (categoryId != null) {
+            category = Category.valueOf(categoryId);
+            categoryArticles = articleService.getArticlesByCategory(category);
+        }
     }
 
     public void generateRssChannel() throws IOException {
-	ExternalContext externalContext = facesContext.getExternalContext();
-	externalContext.responseReset();
-	externalContext.setResponseContentType("application/rss+xml");
-	OutputStream outputStream = externalContext.getResponseOutputStream();
-	articleService.generateRss(outputStream);
-	outputStream.close();
-	facesContext.responseComplete();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        externalContext.responseReset();
+        externalContext.setResponseContentType("application/rss+xml");
+        OutputStream outputStream = externalContext.getResponseOutputStream();
+        articleService.generateRss(outputStream);
+        outputStream.close();
+        facesContext.responseComplete();
     }
 
     /**
      * @return the articles
      */
     public List<Article> getArticles() {
-	return articles;
+        return articles;
     }
 
     /**
      * @param articles the articles to set
      */
     public void setArticles(List<Article> articles) {
-	this.articles = articles;
+        this.articles = articles;
     }
 
     /**
      * @return the featuredArticle
      */
     public Article getFeaturedArticle() {
-	return featuredArticle;
+        return featuredArticle;
     }
 
     /**
      * @param featuredArticle the featuredArticle to set
      */
     public void setFeaturedArticle(Article featuredArticle) {
-	this.featuredArticle = featuredArticle;
+        this.featuredArticle = featuredArticle;
     }
 
     /**
      * @return the categoryId
      */
     public String getCategoryId() {
-	return categoryId;
+        return categoryId;
     }
 
     /**
      * @param categoryId the categoryId to set
      */
     public void setCategoryId(String categoryId) {
-	this.categoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     /**
      * @return the category
      */
     public Category getCategory() {
-	return category;
+        return category;
     }
 
     /**
      * @param category the category to set
      */
     public void setCategory(Category category) {
-	this.category = category;
+        this.category = category;
     }
 
     /**
      * @return the categoryArticles
      */
     public List<Article> getCategoryArticles() {
-	return categoryArticles;
+        return categoryArticles;
     }
 
     /**
      * @param categoryArticles the categoryArticles to set
      */
     public void setCategoryArticles(List<Article> categoryArticles) {
-	this.categoryArticles = categoryArticles;
+        this.categoryArticles = categoryArticles;
     }
 
     /**
      * @return the rss
      */
     public String getRss() {
-	return rss;
+        return rss;
     }
 
     /**
      * @param rss the rss to set
      */
     public void setRss(String rss) {
-	this.rss = rss;
+        this.rss = rss;
     }
 }

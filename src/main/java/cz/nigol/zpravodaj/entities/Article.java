@@ -23,18 +23,18 @@ import javax.persistence.TemporalType;
 import cz.nigol.zpravodaj.enums.Category;
 
 @NamedQueries({
-	@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a"),
-	    @NamedQuery(name=Article.GET_BY_USER,
-			query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY a.changedAt DESC"),
-	    @NamedQuery(name=Article.GET_PUBLISHED,
-			query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
-	    @NamedQuery(name=Article.GET_FEATURED,
-			query="SELECT a FROM Article a WHERE a.featuredUrl IS NOT NULL AND " +
-			"a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
-	    @NamedQuery(name=Article.GET_BY_CATEGORY,
-			query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL AND a.category = :category " +
-			"ORDER BY a.publishedAt DESC"),
-    })
+@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a"),
+    @NamedQuery(name=Article.GET_BY_USER,
+    query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY a.changedAt DESC"),
+    @NamedQuery(name=Article.GET_PUBLISHED,
+    query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
+    @NamedQuery(name=Article.GET_FEATURED,
+    query="SELECT a FROM Article a WHERE a.featuredUrl IS NOT NULL AND " +
+    "a.publishedAt IS NOT NULL ORDER BY a.publishedAt DESC"),
+    @NamedQuery(name=Article.GET_BY_CATEGORY,
+    query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL AND a.category = :category " +
+    "ORDER BY a.publishedAt DESC"),
+})
 @Entity
 @Table(name = "ZPR_ARTICLE")
 public class Article implements Serializable {
@@ -64,7 +64,7 @@ public class Article implements Serializable {
 
     // perex
     @Column(name="LEAD_PARAGRAPH", columnDefinition="VARCHAR(700)")
-    private String leadParagraph;
+        private String leadParagraph;
 
     @Column(name="PUBLISHED_AT")
     @Temporal(TemporalType.TIMESTAMP)
@@ -75,7 +75,7 @@ public class Article implements Serializable {
     private Category category;
 
     @Column(name="LABEL", columnDefinition="VARCHAR(200)")
-    private String label;
+        private String label;
 
     @Column(name="CHANGED_AT")
     @Temporal(TemporalType.TIMESTAMP)
@@ -88,136 +88,136 @@ public class Article implements Serializable {
      * @return the id
      */
     public String getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(String id) {
-	this.id = id;
+        this.id = id;
     }
 
     /**
      * @return the createdBy
      */
     public User getCreatedBy() {
-	return createdBy;
+        return createdBy;
     }
 
     /**
      * @param createdBy the createdBy to set
      */
     public void setCreatedBy(User createdBy) {
-	this.createdBy = createdBy;
+        this.createdBy = createdBy;
     }
 
     /**
      * @return the body
      */
     public String getBody() {
-	return body;
+        return body;
     }
 
     /**
      * @param body the body to set
      */
     public void setBody(String body) {
-	this.body = body;
+        this.body = body;
     }
 
     /**
      * @return the leadParagraph
      */
     public String getLeadParagraph() {
-	return leadParagraph;
+        return leadParagraph;
     }
 
     /**
      * @param leadParagraph the leadParagraph to set
      */
     public void setLeadParagraph(String leadParagraph) {
-	this.leadParagraph = leadParagraph;
+        this.leadParagraph = leadParagraph;
     }
 
     /**
      * @return the publishedAt
      */
     public Date getPublishedAt() {
-	return publishedAt;
+        return publishedAt;
     }
 
     /**
      * @param publishedAt the publishedAt to set
      */
     public void setPublishedAt(Date publishedAt) {
-	this.publishedAt = publishedAt;
+        this.publishedAt = publishedAt;
     }
 
-	/**
-	 * @return the category
-	 */
-	public Category getCategory() {
-		return category;
-	}
+    /**
+     * @return the category
+     */
+    public Category getCategory() {
+        return category;
+    }
 
-	/**
-	 * @param category the category to set
-	 */
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
-	/**
-	 * @return the label
-	 */
-	public String getLabel() {
-		return label;
-	}
+    /**
+     * @return the label
+     */
+    public String getLabel() {
+        return label;
+    }
 
-	/**
-	 * @param label the label to set
-	 */
-	public void setLabel(String label) {
-		this.label = label;
-	}
+    /**
+     * @param label the label to set
+     */
+    public void setLabel(String label) {
+        this.label = label;
+    }
 
-	/**
+    /**
      * @return the changedAt
      */
     public Date getChangedAt() {
-	return changedAt;
+        return changedAt;
     }
 
     /**
      * @param changedAt the changedAt to set
      */
     public void setChangedAt(Date changedAt) {
-	this.changedAt = changedAt;
+        this.changedAt = changedAt;
     }
 
-	/**
-	 * @return the featuredUrl
-	 */
-	public String getFeaturedUrl() {
-		return featuredUrl;
-	}
+    /**
+     * @return the featuredUrl
+     */
+    public String getFeaturedUrl() {
+        return featuredUrl;
+    }
 
-	/**
-	 * @param featuredUrl the featuredUrl to set
-	 */
-	public void setFeaturedUrl(String featuredUrl) {
-		this.featuredUrl = featuredUrl;
-	}
+    /**
+     * @param featuredUrl the featuredUrl to set
+     */
+    public void setFeaturedUrl(String featuredUrl) {
+        this.featuredUrl = featuredUrl;
+    }
 
-	@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Article)) return false;
         Article article = (Article) o;
         return id.equals(article.getId());
     }
- 
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

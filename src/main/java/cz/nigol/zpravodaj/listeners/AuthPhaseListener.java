@@ -23,25 +23,25 @@ public class AuthPhaseListener implements PhaseListener {
     private Log log;
     @Inject
     private SessionBean sessionBean;
-    
+
     public void beforePhase(PhaseEvent pe) {
         HttpServletRequest req = (HttpServletRequest) pe.getFacesContext().getExternalContext().getRequest();
         String uri = req.getRequestURI();
-	User user = sessionBean.getUser();
+        User user = sessionBean.getUser();
         boolean reject = uri.contains("/au/") && !user.isActive();
-	reject = reject || uri.contains("/ed/") && !(user.isActive() && Role.EDITOR.equals(user.getRole()));
-	if (reject) {
-	    FacesContext facesContext = pe.getFacesContext();
-	    facesContext.getApplication().getNavigationHandler()
-		.handleNavigation(facesContext, null, "login.xhtml?faces-redirect=true");
-	    log.info("---UNAUTHORIZED ACCESS.");
-	}
+        reject = reject || uri.contains("/ed/") && !(user.isActive() && Role.EDITOR.equals(user.getRole()));
+        if (reject) {
+            FacesContext facesContext = pe.getFacesContext();
+            facesContext.getApplication().getNavigationHandler()
+                .handleNavigation(facesContext, null, "login.xhtml?faces-redirect=true");
+            log.info("---UNAUTHORIZED ACCESS.");
+        }
     }
-    
+
     public void afterPhase(PhaseEvent pe) {
-        
+
     }
-    
+
     public PhaseId getPhaseId() {
         return PhaseId.RESTORE_VIEW;
     }

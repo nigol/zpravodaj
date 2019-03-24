@@ -30,13 +30,13 @@ public class FileMetadataServiceImplTest {
 
     @Test
     public void testGetByUser() {
-	User user = new User();
-	when(entityManager.createNamedQuery(FileMetadata.GET_BY_USER, FileMetadata.class)).thenReturn(typedQuery);
-	when(typedQuery.setParameter(FileMetadata.USER_PARAM, user)).thenReturn(typedQuery);
-	when(typedQuery.getResultList()).thenReturn(new ArrayList<>());
-	fileMetadataService.getByUser(user);
-	verify(entityManager).createNamedQuery(FileMetadata.GET_BY_USER, FileMetadata.class);
-	verify(typedQuery).setParameter(FileMetadata.USER_PARAM, user);
-	verify(typedQuery).getResultList();
+        User user = new User();
+        when(entityManager.createNamedQuery(FileMetadata.GET_BY_USER, FileMetadata.class)).thenReturn(typedQuery);
+        when(typedQuery.setParameter(FileMetadata.USER_PARAM, user)).thenReturn(typedQuery);
+        when(typedQuery.getResultList()).thenReturn(new ArrayList<>());
+        fileMetadataService.getByUser(user);
+        verify(entityManager).createNamedQuery(FileMetadata.GET_BY_USER, FileMetadata.class);
+        verify(typedQuery).setParameter(FileMetadata.USER_PARAM, user);
+        verify(typedQuery).getResultList();
     }
 }

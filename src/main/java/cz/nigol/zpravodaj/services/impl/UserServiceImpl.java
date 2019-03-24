@@ -18,23 +18,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ALL, User.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ALL, User.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
     public User getUserById(String id) {
-	return em.find(User.class, id);
+        return em.find(User.class, id);
     }
 
     @Override
     public User saveUser(User user) {
-	return em.merge(user);
+        return em.merge(user);
     }
 
     @Override
     public List<User> getActiveUsers() {
-	TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE, User.class);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<User> typedQuery = em.createNamedQuery(User.GET_ACTIVE, User.class);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 }
