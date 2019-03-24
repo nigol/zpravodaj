@@ -52,6 +52,19 @@ footer {
     flex-shrink: 0;
 }
 
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.categories a:visited {
+    color: #fff;
+}
+
+.categories a:hover {
+    color: #fff;
+}
+
 .headerDate {
     float: left;
     font-size: 85%;
