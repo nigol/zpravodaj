@@ -35,31 +35,31 @@ public class FileMetadataServiceImpl implements FileMetadataService {
 
     @Override
     public List<FileMetadata> getByUser(User user) {
-	TypedQuery<FileMetadata> typedQuery = em.createNamedQuery(FileMetadata.GET_BY_USER, FileMetadata.class);
-	typedQuery.setParameter(FileMetadata.USER_PARAM, user);
-	return new ArrayList<>(typedQuery.getResultList());
+        TypedQuery<FileMetadata> typedQuery = em.createNamedQuery(FileMetadata.GET_BY_USER, FileMetadata.class);
+        typedQuery.setParameter(FileMetadata.USER_PARAM, user);
+        return new ArrayList<>(typedQuery.getResultList());
     }
 
     @Override
     public FileMetadata save(FileMetadata fileMetadata, String path, byte[] bytes) throws UploadFailedException {
-	FileMetadata result = em.merge(fileMetadata);
-	Set<OpenOption> options = new HashSet<OpenOption>();
-	options.add(APPEND);
-	options.add(CREATE);
-	Set<PosixFilePermission> perms =
-	    PosixFilePermissions.fromString("rw-r-----");
-	FileAttribute<Set<PosixFilePermission>> attr =
-	    PosixFilePermissions.asFileAttribute(perms);
-	Path file = Paths.get(path + fileMetadata.getPath());
-	ByteBuffer bb = ByteBuffer.wrap(bytes);
-	try {
-	    Files.createDirectories(file.getParent());
-	    Files.createFile(file);
-	    SeekableByteChannel sbc = Files.newByteChannel(file, options, attr);
-	    sbc.write(bb);
-	} catch (IOException e) {
-	    throw new UploadFailedException(e);
-	}
-	return result;
+        FileMetadata result = em.merge(fileMetadata);
+        Set<OpenOption> options = new HashSet<OpenOption>();
+        options.add(APPEND);
+        options.add(CREATE);
+        Set<PosixFilePermission> perms =
+            PosixFilePermissions.fromString("rw-r-----");
+        FileAttribute<Set<PosixFilePermission>> attr =
+            PosixFilePermissions.asFileAttribute(perms);
+        Path file = Paths.get(path + fileMetadata.getPath());
+        ByteBuffer bb = ByteBuffer.wrap(bytes);
+        try {
+            Files.createDirectories(file.getParent());
+            Files.createFile(file);
+            SeekableByteChannel sbc = Files.newByteChannel(file, options, attr);
+            sbc.write(bb);
+        } catch (IOException e) {
+            throw new UploadFailedException(e);
+        }
+        return result;
     }
 }

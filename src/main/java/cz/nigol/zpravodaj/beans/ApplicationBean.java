@@ -22,39 +22,39 @@ public class ApplicationBean {
 
     @PostConstruct
     public void init() {
-	daysOfWeek = new HashMap<>();
-	daysOfWeek.put(1, "neděle");
-	daysOfWeek.put(2, "pondělí");
-	daysOfWeek.put(3, "úterý");
-	daysOfWeek.put(4, "středa");
-	daysOfWeek.put(5, "čtvrtek");
-	daysOfWeek.put(6, "pátek");
-	daysOfWeek.put(7, "sobota");
-	url = configuration.getUrl();
+        daysOfWeek = new HashMap<>();
+        daysOfWeek.put(1, "neděle");
+        daysOfWeek.put(2, "pondělí");
+        daysOfWeek.put(3, "úterý");
+        daysOfWeek.put(4, "středa");
+        daysOfWeek.put(5, "čtvrtek");
+        daysOfWeek.put(6, "pátek");
+        daysOfWeek.put(7, "sobota");
+        url = configuration.getUrl();
     }
 
     public Date today() {
-	return new Date();
+        return new Date();
     }
 
     public String todayNameOfDay() {
-	Calendar calendar = Calendar.getInstance();
-	calendar.setTime(today());
-	int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-	return daysOfWeek.get(dayOfWeek);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today());
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        return daysOfWeek.get(dayOfWeek);
     }
 
     /**
      * @return the url
      */
     public String getUrl() {
-	return url;
+        return url;
     }
 
     /**
      * @param url the url to set
      */
     public void setUrl(String url) {
-	this.url = url;
+        this.url = url;
     }
 }

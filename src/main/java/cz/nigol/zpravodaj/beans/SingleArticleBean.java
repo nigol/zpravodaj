@@ -27,70 +27,70 @@ public class SingleArticleBean {
     private Article featuredArticle;
 
     public void onLoad() {
-	featuredArticle = articleService.getFeaturedArticle();
-	articleUrl = configuration.getUrl() + "clanek.jsf?id=" + id;
-	article = articleService.getArticleById(id);
-	if (article != null) {
-	    article = articleService.loadArticleBody(article);
-	    if (article.getPublishedAt() == null && user.getId() == null) {
-		article = null;
-	    }
-	}
+        featuredArticle = articleService.getFeaturedArticle();
+        articleUrl = configuration.getUrl() + "clanek.jsf?id=" + id;
+        article = articleService.getArticleById(id);
+        if (article != null) {
+            article = articleService.loadArticleBody(article);
+            if (article.getPublishedAt() == null && user.getId() == null) {
+                article = null;
+            }
+        }
     }
 
     /**
      * @return the id
      */
     public String getId() {
-	return id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(String id) {
-	this.id = id;
+        this.id = id;
     }
 
     /**
      * @return the article
      */
     public Article getArticle() {
-	return article;
+        return article;
     }
 
     /**
      * @param article the article to set
      */
     public void setArticle(Article article) {
-	this.article = article;
+        this.article = article;
     }
 
     /**
      * @return the articleUrl
      */
     public String getArticleUrl() {
-	return articleUrl;
+        return articleUrl;
     }
 
     /**
      * @param articleUrl the articleUrl to set
      */
     public void setArticleUrl(String articleUrl) {
-	this.articleUrl = articleUrl;
+        this.articleUrl = articleUrl;
     }
 
     /**
      * @return the featuredArticle
      */
     public Article getFeaturedArticle() {
-	return featuredArticle;
+        return featuredArticle;
     }
 
     /**
      * @param featuredArticle the featuredArticle to set
      */
     public void setFeaturedArticle(Article featuredArticle) {
-	this.featuredArticle = featuredArticle;
+        this.featuredArticle = featuredArticle;
     }
 }
