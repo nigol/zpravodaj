@@ -110,6 +110,10 @@ footer a {
     color: #444;
 }
 
+.articleBody img {
+    max-width: 95%;
+}
+
 .articleBody .ql-align-center {
     text-align: center;
 }
