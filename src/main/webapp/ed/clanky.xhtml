@@ -1,214 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/templateAu.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="/WEB-INF/templates/templateAu.xhtml"
+        xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="Tršický zpravodaj"/>
+        <ui:param name="title" value="Tršický zpravodaj"/>
 
-  <ui:define name="content">
-    <script>
-      var Link = Quill.import('formats/link');
-      class MyLink extends Link {
-	  static create(value) {
-	      const node = super.create(value);
-	      node.removeAttribute('target');
-	      return node;
-	  }
-      }
-      Quill.register(MyLink, true);
-    </script>
-    
-    <h2>Všechny články</h2>
+        <ui:define name="content">
+            <script>
+                var Link = Quill.import('formats/link');
+                class MyLink extends Link {
+                    static create(value) {
+                        const node = super.create(value);
+                        node.removeAttribute('target');
+                        return node;
+                    }
+                }
+                Quill.register(MyLink, true);
+            </script>
 
-    <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
-      <p:column/>
-      
-      <p:commandButton id="filesButton"
-		       value="Soubory"
-		       icon="fa fa-file"
-		       type="button"/>
-      <p:overlayPanel id="files"
-		      for="filesButton"
-		      hideEffect="fade"
-		      dynamic="true"
-		      my="center top"
-		      at="center bottom"
-		      style="width: 80%"
-		      modal="false">
-	<ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
-      </p:overlayPanel>
+            <h2>Všechny články</h2>
 
-      <p:column/>
-    </p:panelGrid>
+            <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+                <p:column/>
 
-    <h:form>
-      <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-        <p:column>
-	  <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
-	    <p:column/>
-	    
-	    <p:commandButton value="Smazat článek" 
-                             action="#{articlesBean.delete}"
-			     disabled="#{empty articlesBean.article}"
-			     onclick="return confirm('Opravdu smazat?')"
-                             update="@form :growl"
-			     icon="fa fa-trash-o"
-			     resetValues="true"
-                             immediate="true"/>
+                <p:commandButton id="filesButton"
+                        value="Soubory"
+                        icon="fa fa-file"
+                        type="button"/>
+                <p:overlayPanel id="files"
+                        for="filesButton"
+                        hideEffect="fade"
+                        dynamic="true"
+                        my="center top"
+                        at="center bottom"
+                        style="width: 80%"
+                        modal="false">
+                    <ui:include src="/WEB-INF/includes/filesHandling.xhtml"/>
+                </p:overlayPanel>
 
-	      <p:selectBooleanButton value="#{articlesBean.editSource}"
-				     onLabel="Editovat HTML"
-				     offLabel="Editovat text">
-		<p:ajax update="@form"/>
-	      </p:selectBooleanButton>
-	  </p:panelGrid>
-	  
-          <p:dataTable id="articles" 
-                       value="#{articlesBean.articles}" 
-                       emptyMessage="Nenalezen žádný výsledek."
-                       selectionMode="single"
-                       selection="#{articlesBean.article}"
-                       rowKey="#{article.id}"
-		       rows="5"
-		       paginator="true"
-		       paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                       var="article">
-            <p:ajax event="rowSelect"
-		    listener="#{articlesBean.onArticleSelect}"
-		    update="@form"
-		    resetValues="true"/>
-            <p:column headerText="Název článku">
-              <h:outputText value="#{article.label}"/>
-            </p:column>
-	    <p:column headerText="Autor"
-		      filterBy="#{article.createdBy.fullName}"
-		      filterMatchMode="contains">
-              <h:outputText value="#{article.createdBy.fullName}"/>
-            </p:column>
-	    <p:column headerText="Změněno"
-		      sortBy="#{article.changedAt}">
-              <h:outputText value="#{article.changedAt}">
-		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	      </h:outputText>
-            </p:column>
-	    <p:column headerText="Kategorie">
-              <h:outputText value="#{article.category}"/>
-            </p:column>
-	    <p:column headerText="Publikováno"
-		      sortBy="#{article.publishedAt}">
-              <h:outputText value="#{article.publishedAt}">
-		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	      </h:outputText>
-            </p:column>
-	    <p:column>
-	      <p:commandButton value="Publikovat" 
-                               action="#{articlesBean.publish(article)}"
-			       rendered="#{empty article.publishedAt}"
-			       onclick="return confirm('Opravdu chcete článek publikovat?')"
-                               update="@form :growl"
-			       icon="fa fa-thermometer-full"
-			       resetValues="true"
-                               immediate="true"/>
-	      <p:commandButton value="Nepublikovat" 
-                               action="#{articlesBean.unpublish(article)}"
-			       rendered="#{!empty article.publishedAt}"
-			       onclick="return confirm('Opravdu chcete zrušit publikaci článku?')"
-                               update="@form :growl"
-			       icon="fa fa-thermometer-empty"
-			       resetValues="true"
-                               immediate="true"/>
-	    </p:column>
-          </p:dataTable>
-        </p:column>
+                <p:column/>
+            </p:panelGrid>
 
-        <p:column>
-          <p:outputPanel rendered="#{!empty articlesBean.article}">
-            <h3>Článek</h3>
+            <h:form>
+                <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                    <p:column>
+                        <p:panelGrid layout="grid" columns="3" styleClass="ui-noborder">
+                            <p:column/>
 
-	    <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_VALUES"/>
-	    
-	    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	      <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-		  <p:outputLabel value="ID" for="articleId"/>
-		  <h:outputText id="articleId" value="#{articlesBean.article.id}"/>
-		</p:panelGrid>
+                            <p:commandButton value="Smazat článek" 
+                                    action="#{articlesBean.delete}"
+                                    disabled="#{empty articlesBean.article}"
+                                    onclick="return confirm('Opravdu smazat?')"
+                                    update="@form :growl"
+                                    icon="fa fa-trash-o"
+                                    resetValues="true"
+                                    immediate="true"/>
 
-		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
- 		  <p:outputLabel value="Autor" for="author"/>
-		  <p:selectOneMenu id="author"
-				   value="#{articlesBean.article.createdBy}"
-				   converter="#{userConverter}">
-		    <f:selectItems value="#{articlesBean.users}"
-				   var="user"
-				   itemLabel="#{user.fullName}"
-				   itemValue="#{user}"/>
-		  </p:selectOneMenu> 
-		</p:panelGrid>
-		
-		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-		  <p:outputLabel value="Nadpis" for="label"/>
-		  <p:inputText id="label" value="#{articlesBean.article.label}" required="true">
-		    <f:validateLength minimum="1" maximum="300"/>
-		  </p:inputText>
-		</p:panelGrid>
-		
-		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-		  <p:outputLabel value="Kategorie" for="section"/>
-		  <p:selectOneMenu id="section" value="#{articlesBean.article.category}">
-		    <f:selectItems value="#{Categories.ALL_VALUES}"/>
-		  </p:selectOneMenu>
-		</p:panelGrid>
-	      </p:panelGrid>
+                                <p:selectBooleanButton value="#{articlesBean.editSource}"
+                                        onLabel="Editovat HTML"
+                                        offLabel="Editovat text">
+                                    <p:ajax update="@form"/>
+                                </p:selectBooleanButton>
+                            </p:panelGrid>
 
-	      <p:outputLabel value="Adresa URL pro pozadí vybraného článku" for="featuredUrl"/>
-	      <p:inputText id="featuredUrl" value="#{articlesBean.article.featuredUrl}">
-		<f:validateLength maximum="300"/>
-	      </p:inputText>
+                            <p:dataTable id="articles" 
+                                    value="#{articlesBean.articles}" 
+                                    emptyMessage="Nenalezen žádný výsledek."
+                                    selectionMode="single"
+                                    selection="#{articlesBean.article}"
+                                    rowKey="#{article.id}"
+                                    rows="5"
+                                    paginator="true"
+                                    paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                    var="article">
+                                <p:ajax event="rowSelect"
+                                        listener="#{articlesBean.onArticleSelect}"
+                                        update="@form"
+                                        resetValues="true"/>
+                                <p:column headerText="Název článku">
+                                    <h:outputText value="#{article.label}"/>
+                                </p:column>
+                                <p:column headerText="Autor"
+                                        filterBy="#{article.createdBy.fullName}"
+                                        filterMatchMode="contains">
+                                    <h:outputText value="#{article.createdBy.fullName}"/>
+                                </p:column>
+                                <p:column headerText="Změněno"
+                                        sortBy="#{article.changedAt}">
+                                    <h:outputText value="#{article.changedAt}">
+                                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Kategorie">
+                                    <h:outputText value="#{article.category}"/>
+                                </p:column>
+                                <p:column headerText="Publikováno"
+                                        sortBy="#{article.publishedAt}">
+                                    <h:outputText value="#{article.publishedAt}">
+                                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <p:commandButton value="Publikovat" 
+                                            action="#{articlesBean.publish(article)}"
+                                            rendered="#{empty article.publishedAt}"
+                                            onclick="return confirm('Opravdu chcete článek publikovat?')"
+                                            update="@form :growl"
+                                            icon="fa fa-thermometer-full"
+                                            resetValues="true"
+                                            immediate="true"/>
+                                    <p:commandButton value="Nepublikovat" 
+                                            action="#{articlesBean.unpublish(article)}"
+                                            rendered="#{!empty article.publishedAt}"
+                                            onclick="return confirm('Opravdu chcete zrušit publikaci článku?')"
+                                            update="@form :growl"
+                                            icon="fa fa-thermometer-empty"
+                                            resetValues="true"
+                                            immediate="true"/>
+                                </p:column>
+                                <p:column headerText="Stav">
+                                    <h:outputText value="#{article.print ? 'Tisk' : 'Web'}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:column>
 
-	      <p:outputLabel value="Perex článku" for="leadParagraph"/>
-              <p:inputTextarea id="leadParagraph"
-			       value="#{articlesBean.article.leadParagraph}"
-			       required="true"
-			       counter="display"
-			       maxlength="700"
-			       counterTemplate="Zbývá {0} znaků."
-			       autoResize="true"
-			       rows="5"/>
-	      <h:outputText id="display" style="color: #666; font-size: 80%"/>
-	      
-              <p:outputLabel value="Text článku" for="body"/>
-              <p:textEditor id="body"
-			    value="#{articlesBean.body}"
-			    rendered="#{!articlesBean.editSource}"
-			    height="300"/>
-	      <p:inputTextarea rows="10"
-			       cols="30"
-			       value="#{articlesBean.body}"
-			       rendered="#{articlesBean.editSource}"/>
-	    </p:panelGrid>
-	    
-	    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-	      <p:commandButton value="Uložit" 
-                               action="#{articlesBean.save}"
-			       icon="fa fa-check"
-                               update=":growl @form"/>
+                        <p:column>
+                            <p:outputPanel rendered="#{!empty articlesBean.article}">
+                                <h3>Článek</h3>
 
-	      <h:panelGroup layout="block" style="text-align: right">
-		<h:link value="Náhled článku"
-			outcome="/clanek.xhtml"
-			target="_blank"
-			disabled="#{!articlesBean.previewAllowed}">
-		  <f:param name="id" value="#{articlesBean.article.id}"/>
-		</h:link>
-	      </h:panelGroup>
-	    </p:panelGrid>
-          </p:outputPanel>
-        </p:column>
-      </p:panelGrid>
-    </h:form>
-  </ui:define>
-</ui:composition>
+                                <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_VALUES"/>
+
+                                <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                                    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+                                        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                                            <p:outputLabel value="ID" for="articleId"/>
+                                            <h:outputText id="articleId" value="#{articlesBean.article.id}"/>
+                                        </p:panelGrid>
+
+                                        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                                            <p:outputLabel value="Autor" for="author"/>
+                                            <p:selectOneMenu id="author"
+                                                    value="#{articlesBean.article.createdBy}"
+                                                    converter="#{userConverter}">
+                                                <f:selectItems value="#{articlesBean.users}"
+                                                        var="user"
+                                                        itemLabel="#{user.fullName}"
+                                                        itemValue="#{user}"/>
+                                            </p:selectOneMenu> 
+                                        </p:panelGrid>
+
+                                        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                                            <p:outputLabel value="Nadpis" for="label"/>
+                                            <p:inputText id="label" value="#{articlesBean.article.label}" required="true">
+                                                <f:validateLength minimum="1" maximum="300"/>
+                                            </p:inputText>
+                                        </p:panelGrid>
+
+                                        <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                                            <p:outputLabel value="Kategorie" for="section"/>
+                                            <p:selectOneMenu id="section" value="#{articlesBean.article.category}">
+                                                <f:selectItems value="#{Categories.ALL_VALUES}"/>
+                                            </p:selectOneMenu>
+                                        </p:panelGrid>
+                                    </p:panelGrid>
+
+                                    <p:outputLabel value="Adresa URL pro pozadí vybraného článku" for="featuredUrl"/>
+                                    <p:inputText id="featuredUrl" value="#{articlesBean.article.featuredUrl}">
+                                        <f:validateLength maximum="300"/>
+                                    </p:inputText>
+
+                                    <p:selectBooleanCheckbox value="#{articlesBean.article.print}" 
+                                            itemLabel="Tisk"/>
+
+                                    <p:outputLabel value="Perex článku" for="leadParagraph"/>
+                                    <p:inputTextarea id="leadParagraph"
+                                            value="#{articlesBean.article.leadParagraph}"
+                                            required="true"
+                                            counter="display"
+                                            maxlength="700"
+                                            counterTemplate="Zbývá {0} znaků."
+                                            autoResize="true"
+                                            rows="5"/>
+                                    <h:outputText id="display" style="color: #666; font-size: 80%"/>
+
+                                    <p:outputLabel value="Text článku" for="body"/>
+                                    <p:textEditor id="body"
+                                            value="#{articlesBean.body}"
+                                            rendered="#{!articlesBean.editSource}"
+                                            height="300"/>
+                                    <p:inputTextarea rows="10"
+                                            cols="30"
+                                            value="#{articlesBean.body}"
+                                            rendered="#{articlesBean.editSource}"/>
+                                </p:panelGrid>
+
+                                <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+                                    <p:commandButton value="Uložit" 
+                                            action="#{articlesBean.save}"
+                                            icon="fa fa-check"
+                                            update=":growl @form"/>
+
+                                        <h:panelGroup layout="block" style="text-align: right">
+                                            <h:link value="Náhled článku"
+                                                    outcome="/clanek.xhtml"
+                                                    target="_blank"
+                                                    disabled="#{!articlesBean.previewAllowed}">
+                                                <f:param name="id" value="#{articlesBean.article.id}"/>
+                                            </h:link>
+                                        </h:panelGroup>
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                            </p:column>
+                        </p:panelGrid>
+                    </h:form>
+                </ui:define>
+            </ui:composition>

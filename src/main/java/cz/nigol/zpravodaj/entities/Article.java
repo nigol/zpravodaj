@@ -64,7 +64,7 @@ public class Article implements Serializable {
 
     // perex
     @Column(name="LEAD_PARAGRAPH", columnDefinition="VARCHAR(700)")
-        private String leadParagraph;
+    private String leadParagraph;
 
     @Column(name="PUBLISHED_AT")
     @Temporal(TemporalType.TIMESTAMP)
@@ -75,7 +75,7 @@ public class Article implements Serializable {
     private Category category;
 
     @Column(name="LABEL", columnDefinition="VARCHAR(200)")
-        private String label;
+    private String label;
 
     @Column(name="CHANGED_AT")
     @Temporal(TemporalType.TIMESTAMP)
@@ -83,6 +83,9 @@ public class Article implements Serializable {
 
     @Column(name="FEATURED_URL")
     private String featuredUrl;
+
+    @Column(name="PRINT")
+    private boolean print;
 
     /**
      * @return the id
@@ -208,6 +211,20 @@ public class Article implements Serializable {
      */
     public void setFeaturedUrl(String featuredUrl) {
         this.featuredUrl = featuredUrl;
+    }
+
+    /**
+     * @return the print
+     */
+    public boolean isPrint() {
+        return print;
+    }
+
+    /**
+     * @param print the print to set
+     */
+    public void setPrint(boolean print) {
+        this.print = print;
     }
 
     @Override

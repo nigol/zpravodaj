@@ -142,6 +142,12 @@ footer a {
     max-width: 95%;
     margin-left: 1em;
     margin-right: 1em;
+    transition: all 0.7s ease;
+}
+
+.articleBody img:hover {
+    transform: scale(1.01) rotate(1deg);
+    box-shadow: 5px 5px 5px #888;
 }
 
 .categoryArticle {
