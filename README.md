@@ -2,6 +2,12 @@
 Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršice. Existuje jak v tištěné, tak i online verzi. Tento repozitář obsahuje zdrojové kódy online verze magazínu.
 
 ## Changelog
+### Verze 1.3
+
+* Změněna patička webu.
+* Upraveno CSS pro onbrázky v čliánku.
+* V administraci článků je možné označit, které články vyšli tiskem.
+
 ### Verze 1.2
 
 * Upraveno formátování obrázků v článku, změněna patička webu, RSS feed přidán jako alternate do hlavičky.
