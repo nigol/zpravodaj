@@ -19,4 +19,5 @@ public interface ArticleService {
     List<Article> getArticlesByCategory(Category category);
     void generateRss(OutputStream outputStream);
     List<Article> getLatestPublishedArticles();
+    List<Article> getPublishedArticlesByUserId(String userId);
 }
