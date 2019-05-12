@@ -35,7 +35,7 @@ import cz.nigol.zpravodaj.enums.Category;
     query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL AND a.category = :category " +
     "ORDER BY a.publishedAt DESC"),
     @NamedQuery(name=Article.GET_BY_USER_ID,
-    query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL AND a.createdBy.id = :userId ORDER BY publishedAt DESC"),
+    query="SELECT a FROM Article a WHERE a.publishedAt IS NOT NULL AND a.createdBy.id = :userId ORDER BY a.publishedAt DESC"),
 })
 @Entity
 @Table(name = "ZPR_ARTICLE")

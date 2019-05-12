@@ -8,17 +8,23 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.zpravodaj.entities.Article;
+import cz.nigol.zpravodaj.entities.User;
 import cz.nigol.zpravodaj.services.ArticleService;
+import cz.nigol.zpravodaj.services.UserService;
 
 @Named
 @RequestScoped
 public class AuthorBean {
     @Inject
     private ArticleService articleService;
+    @Inject
+    private UserService userService;
     private String userId;
     private List<Article> articles = new ArrayList<>();
+    private User user;
 
     public void onLoad() {
+        user = userService.getUserById(userId);
         articles = articleService.getPublishedArticlesByUserId(userId);
     }
 
@@ -62,5 +68,19 @@ public class AuthorBean {
      */
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+    }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 }
