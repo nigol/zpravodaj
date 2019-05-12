@@ -10,7 +10,7 @@
   <ui:param name="og_url" value="#{applicationBean.url}"/>
   <ui:param name="og_type" value="website"/>
   <ui:param name="og_title" value="Tršický zpravodaj"/>
-  <ui:param name="og_description" value="Tršický zpravodaj"/>
+  <ui:param name="og_description" value="Články v kategorii #{indexBean.category.label}."/>
 
   <ui:define name="metadata">
     <f:metadata>
@@ -20,6 +20,9 @@
   </ui:define>
 
   <ui:define name="content">
+      <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: normal; text-align: center;">
+          #{indexBean.category.label}
+      </h3>
     <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
       <p:dataGrid value="#{indexBean.categoryArticles}"
 		  var="article"
