@@ -36,9 +36,12 @@
                   <f:convertDateTime pattern="dd.MM.yyyy"/>
               </h:outputText>
               <br/>
-              <b>
-                  #{singleArticleBean.article.createdBy.fullName}
-              </b>
+              <h:link outcome="/autor.xhtml" style="text-decoration: none">
+                  <f:param name="a" value="#{singleArticleBean.article.createdBy.id}"/>
+                  <b>
+                      #{singleArticleBean.article.createdBy.fullName}
+                  </b>
+              </h:link>
           </p> 
 
 	    <p style="font-size: 130%">

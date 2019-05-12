@@ -148,7 +148,7 @@ public class ArticleServiceImpl implements ArticleService {
         element.appendChild(document.createTextNode(article.getLabel()));
         root.appendChild(element);
         element = document.createElement("link");
-        String articleUrl = configuration.getUrl() + "clanek.jsf?id=" +	URLEncoder.encode(article.getId(), "UTF-8");
+        String articleUrl = configuration.getUrl() + "clanek.jsf?id=" + URLEncoder.encode(article.getId(), "UTF-8");
         element.appendChild(document.createTextNode(articleUrl));
         root.appendChild(element);
         element = document.createElement("guid");
@@ -179,6 +179,14 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getLatestPublishedArticles() {
         TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_PUBLISHED, Article.class);
         typedQuery.setMaxResults(20);
+        return new ArrayList<>(typedQuery.getResultList());
+    }
+
+    @Override
+    public List<Article> getPublishedArticlesByUserId(String userId) {
+        TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_BY_USER_ID,
+                Article.class);
+        typedQuery.setParameter(Article.USER_ID_PARAM, userId);
         return new ArrayList<>(typedQuery.getResultList());
     }
 }
