@@ -1,6 +1,7 @@
 package cz.nigol.zpravodaj.beans;
 
 import java.io.Serializable;
+import java.text.Normalizer;
 import java.util.Date;
 import java.util.List;
 
@@ -62,7 +63,10 @@ public class ArticlesBean implements Serializable {
         article.setChangedAt(new Date());
         if (NEW_ID.equals(article.getId())) {
             article.setCreatedBy(user);
-            article.setId(article.getLabel());
+            String normalized = Normalizer.normalize(article.getLabel(), 
+                    Normalizer.Form.NFKD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+            article.setId(normalized.replaceAll(" ", "-"));
         }
         if ("".equals(article.getFeaturedUrl())) {
             article.setFeaturedUrl(null);

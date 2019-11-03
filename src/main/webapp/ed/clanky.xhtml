@@ -19,6 +19,15 @@
                     }
                 }
                 Quill.register(MyLink, true);
+                var ImageBl = Quill.import('formats/image');
+                class MyImage extends ImageBl {
+                    static create(value) {
+                        const node = super.create(value);
+                        node.setAttribute('alt', "Vložený obrázek");
+                        return node;
+                    }
+                }
+                Quill.register(MyImage, true);
             </script>
 
             <h2>Všechny články</h2>
@@ -109,7 +118,7 @@
                                             rendered="#{empty article.publishedAt}"
                                             onclick="return confirm('Opravdu chcete článek publikovat?')"
                                             update="@form :growl"
-                                            icon="fa fa-thermometer-full"
+                                            icon="fa fa-eye"
                                             resetValues="true"
                                             immediate="true"/>
                                     <p:commandButton value="Nepublikovat" 
@@ -117,7 +126,7 @@
                                             rendered="#{!empty article.publishedAt}"
                                             onclick="return confirm('Opravdu chcete zrušit publikaci článku?')"
                                             update="@form :growl"
-                                            icon="fa fa-thermometer-empty"
+                                            icon="fa fa-eye-slash"
                                             resetValues="true"
                                             immediate="true"/>
                                 </p:column>
@@ -175,46 +184,46 @@
                                     <p:selectBooleanCheckbox value="#{articlesBean.article.print}" 
                                             itemLabel="Tisk"/>
 
-                                    <p:outputLabel value="Perex článku" for="leadParagraph"/>
-                                    <p:inputTextarea id="leadParagraph"
-                                            value="#{articlesBean.article.leadParagraph}"
-                                            required="true"
-                                            counter="display"
-                                            maxlength="700"
-                                            counterTemplate="Zbývá {0} znaků."
-                                            autoResize="true"
-                                            rows="5"/>
-                                    <h:outputText id="display" style="color: #666; font-size: 80%"/>
+                                        <p:outputLabel value="Perex článku" for="leadParagraph"/>
+                                        <p:inputTextarea id="leadParagraph"
+                                                value="#{articlesBean.article.leadParagraph}"
+                                                required="true"
+                                                counter="display"
+                                                maxlength="700"
+                                                counterTemplate="Zbývá {0} znaků."
+                                                autoResize="true"
+                                                rows="5"/>
+                                        <h:outputText id="display" style="color: #666; font-size: 80%"/>
 
-                                    <p:outputLabel value="Text článku" for="body"/>
-                                    <p:textEditor id="body"
-                                            value="#{articlesBean.body}"
-                                            rendered="#{!articlesBean.editSource}"
-                                            height="300"/>
-                                    <p:inputTextarea rows="10"
-                                            cols="30"
-                                            value="#{articlesBean.body}"
-                                            rendered="#{articlesBean.editSource}"/>
-                                </p:panelGrid>
-
-                                <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-                                    <p:commandButton value="Uložit" 
-                                            action="#{articlesBean.save}"
-                                            icon="fa fa-check"
-                                            update=":growl @form"/>
-
-                                        <h:panelGroup layout="block" style="text-align: right">
-                                            <h:link value="Náhled článku"
-                                                    outcome="/clanek.xhtml"
-                                                    target="_blank"
-                                                    disabled="#{!articlesBean.previewAllowed}">
-                                                <f:param name="id" value="#{articlesBean.article.id}"/>
-                                            </h:link>
-                                        </h:panelGroup>
+                                        <p:outputLabel value="Text článku" for="body"/>
+                                        <p:textEditor id="body"
+                                                value="#{articlesBean.body}"
+                                                rendered="#{!articlesBean.editSource}"
+                                                height="300"/>
+                                        <p:inputTextarea rows="10"
+                                                cols="30"
+                                                value="#{articlesBean.body}"
+                                                rendered="#{articlesBean.editSource}"/>
                                     </p:panelGrid>
-                                </p:outputPanel>
-                            </p:column>
-                        </p:panelGrid>
-                    </h:form>
-                </ui:define>
-            </ui:composition>
+
+                                    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+                                        <p:commandButton value="Uložit" 
+                                                action="#{articlesBean.save}"
+                                                icon="fa fa-check"
+                                                update=":growl @form"/>
+
+                                            <h:panelGroup layout="block" style="text-align: right">
+                                                <h:link value="Náhled článku"
+                                                        outcome="/clanek.xhtml"
+                                                        target="_blank"
+                                                        disabled="#{!articlesBean.previewAllowed}">
+                                                    <f:param name="id" value="#{articlesBean.article.id}"/>
+                                                </h:link>
+                                            </h:panelGroup>
+                                        </p:panelGrid>
+                                    </p:outputPanel>
+                                </p:column>
+                            </p:panelGrid>
+                        </h:form>
+                    </ui:define>
+                </ui:composition>

@@ -9,182 +9,191 @@
   <ui:param name="title" value="Tršický zpravodaj"/>
 
   <ui:define name="content">
-    <script>
-      var Link = Quill.import('formats/link');
-      class MyLink extends Link {
-	  static create(value) {
-	      const node = super.create(value);
-	      node.removeAttribute('target');
-	      return node;
-	  }
-      }
-      Quill.register(MyLink, true);
-    </script>
+      <script>
+          var Link = Quill.import('formats/link');
+          class MyLink extends Link {
+              static create(value) {
+                  const node = super.create(value);
+                  node.removeAttribute('target');
+                  return node;
+              }
+          }
+          Quill.register(MyLink, true);
+          var ImageBl = Quill.import('formats/image');
+          class MyImage extends ImageBl {
+              static create(value) {
+                  const node = super.create(value);
+                  node.setAttribute('alt', "Vložený obrázek");
+                  return node;
+              }
+          }
+          Quill.register(MyImage, true);
+      </script>
 
-    <h2>Moje články</h2>
+      <h2>Moje články</h2>
 
-    <h:form>
-      <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-        <p:column>
-	  <p:panelGrid layout="grid" columns="4" styleClass="ui-noborder">
-	    <p:column/>
-	    
-	    <p:commandButton value="Nový článek" 
-                             action="#{articlesBean.newArticle}" 
-                             update="@form"
-			     icon="fa fa-plus-square-o"
-			     resetValues="true"
-                             immediate="true"/>
-	    <p:commandButton value="Smazat článek" 
-                             action="#{articlesBean.delete}"
-			     disabled="#{empty articlesBean.article or !empty articlesBean.article.publishedAt}"
-			     onclick="return confirm('Opravdu smazat?')"
-                             update="@form :growl"
-			     icon="fa fa-trash-o"
-			     resetValues="true"
-                             immediate="true"/>
+      <h:form>
+          <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+              <p:column>
+                  <p:panelGrid layout="grid" columns="4" styleClass="ui-noborder">
+                      <p:column/>
 
-	    <p:column/>
-	  </p:panelGrid>
-	  
-          <p:dataTable id="articles" 
-                       value="#{articlesBean.myArticles}" 
-                       emptyMessage="Nenalezen žádný výsledek."
-                       selectionMode="single"
-                       selection="#{articlesBean.article}"
-                       rowKey="#{article.id}"
-		       rows="5"
-		       paginator="true"
-		       paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                       var="article">
-            <p:ajax event="rowSelect"
-		    listener="#{articlesBean.onArticleSelect}"
-		    update="@form"
-		    resetValues="true"/>
-            <p:column headerText="Název článku">
-              <h:outputText value="#{article.label}"/>
-            </p:column>
-	    <p:column headerText="Změněno">
-              <h:outputText value="#{article.changedAt}">
-		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	      </h:outputText>
-            </p:column>
-	    <p:column headerText="Kategorie">
-              <h:outputText value="#{article.category}"/>
-            </p:column>
-	    <p:column headerText="Publikováno">
-              <h:outputText value="#{article.publishedAt}">
-		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-	      </h:outputText>
-            </p:column>
-          </p:dataTable>
-        </p:column>
+                      <p:commandButton value="Nový článek" 
+                              action="#{articlesBean.newArticle}" 
+                              update="@form"
+                              icon="fa fa-plus-square-o"
+                              resetValues="true"
+                              immediate="true"/>
+                      <p:commandButton value="Smazat článek" 
+                              action="#{articlesBean.delete}"
+                              disabled="#{empty articlesBean.article or !empty articlesBean.article.publishedAt}"
+                              onclick="return confirm('Opravdu smazat?')"
+                              update="@form :growl"
+                              icon="fa fa-trash-o"
+                              resetValues="true"
+                              immediate="true"/>
 
-        <p:column>
-          <p:outputPanel rendered="#{!empty articlesBean.article}">
-            <h3>Článek</h3>
+                          <p:column/>
+                      </p:panelGrid>
 
-	    <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_VALUES"/>
-	    
-	    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-	      <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-		  <p:outputLabel value="Nadpis" for="label"/>
-		  <p:inputText id="label"
-			       value="#{articlesBean.article.label}"
-			       disabled="#{!empty articlesBean.article.publishedAt}"
-			       required="true">
-		    <f:validateLength minimum="1" maximum="300"/>
-		    <f:validator binding="#{articleLabelValidator}"/>
-		  </p:inputText>
-		</p:panelGrid>
-		
-		<p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
-		  <p:outputLabel value="Kategorie" for="section"/>
-		  <p:selectOneMenu id="section"
-				   disabled="#{!empty articlesBean.article.publishedAt}"
-				   value="#{articlesBean.article.category}">
-		    <f:selectItems value="#{Categories.ALL_VALUES}"/>
-		  </p:selectOneMenu>
-		</p:panelGrid>
-	      </p:panelGrid>
+                      <p:dataTable id="articles" 
+                              value="#{articlesBean.myArticles}" 
+                              emptyMessage="Nenalezen žádný výsledek."
+                              selectionMode="single"
+                              selection="#{articlesBean.article}"
+                              rowKey="#{article.id}"
+                              rows="5"
+                              paginator="true"
+                              paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                              var="article">
+                          <p:ajax event="rowSelect"
+                                  listener="#{articlesBean.onArticleSelect}"
+                                  update="@form"
+                                  resetValues="true"/>
+                          <p:column headerText="Název článku">
+                              <h:outputText value="#{article.label}"/>
+                          </p:column>
+                          <p:column headerText="Změněno">
+                              <h:outputText value="#{article.changedAt}">
+                                  <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                              </h:outputText>
+                          </p:column>
+                          <p:column headerText="Kategorie">
+                              <h:outputText value="#{article.category}"/>
+                          </p:column>
+                          <p:column headerText="Publikováno">
+                              <h:outputText value="#{article.publishedAt}">
+                                  <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                              </h:outputText>
+                          </p:column>
+                      </p:dataTable>
+                  </p:column>
 
-	      <p:outputLabel value="Perex článku" for="leadParagraph"/>
-              <p:inputTextarea id="leadParagraph"
-			       value="#{articlesBean.article.leadParagraph}"
-			       required="true"
-			       counter="display"
-			       maxlength="700"
-			       counterTemplate="Zbývá {0} znaků."
-			       autoResize="true"
-			       disabled="#{!empty articlesBean.article.publishedAt}"
-			       rows="5"/>
-	      <h:outputText id="display" style="color: #666; font-size: 80%"/>
-	      
-              <p:outputLabel value="Text článku" for="body"/>
-              <p:textEditor id="body"
-			    value="#{articlesBean.body}"
-			    disabled="#{!empty articlesBean.article.publishedAt}"
-			    height="300">
-		<f:facet name="toolbar">
-		  <span class="ql-formats">
-		    <select class="ql-font" />
-		    <select class="ql-size" />
-		  </span>
-		  <span class="ql-formats">
-		    <button class="ql-bold" />
-		    <button class="ql-italic" />
-		    <button class="ql-underline" />
-		    <button class="ql-strike" />
-		  </span>
-		  <span class="ql-formats">
-		    <button class="ql-script" value="sub" />
-		    <button class="ql-script" value="super" />
-		  </span>
-		  <span class="ql-formats">
-		    <button class="ql-blockquote" />
-		    <button class="ql-code-block" />
-		  </span>
-		  <span class="ql-formats">
-		    <button class="ql-list" value="ordered" />
-		    <button class="ql-list" value="bullet" />
-		    <button class="ql-indent" value="-1" />
-		    <button class="ql-indent" value="+1" />
-		  </span>
-		  <span class="ql-formats">
-		    <button class="ql-direction" value="rtl" />
-		    <select class="ql-align" />
-		  </span>
-		  <span class="ql-formats">
-		    <button class="ql-link" />
-		    <button class="ql-image" />
-		  </span>
-		  <span class="ql-formats">
-		    <button class="ql-clean" />
-		  </span>
-		</f:facet>
-	      </p:textEditor>
-	    </p:panelGrid>
-	    
-	    <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
-	      <p:commandButton value="Uložit" 
-                               action="#{articlesBean.save}"
-			       disabled="#{!empty articlesBean.article.publishedAt}"
-			       icon="fa fa-check"
-                               update=":growl @form"/>
+                  <p:column>
+                      <p:outputPanel rendered="#{!empty articlesBean.article}">
+                          <h3>Článek</h3>
 
-	      <h:panelGroup layout="block" style="text-align: right">
-		<h:link value="Náhled článku"
-			outcome="/clanek.xhtml"
-			target="_blank"
-			disabled="#{!articlesBean.previewAllowed}">
-		  <f:param name="id" value="#{articlesBean.article.id}"/>
-		</h:link>
-	      </h:panelGroup>
-	    </p:panelGrid>
-          </p:outputPanel>
-        </p:column>
-      </p:panelGrid>
-    </h:form>
-  </ui:define>
-</ui:composition>
+                          <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_VALUES"/>
+
+                          <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                              <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+                                  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                                      <p:outputLabel value="Nadpis" for="label"/>
+                                      <p:inputText id="label"
+                                              value="#{articlesBean.article.label}"
+                                              disabled="#{!empty articlesBean.article.publishedAt}"
+                                              required="true">
+                                          <f:validateLength minimum="1" maximum="300"/>
+                                          <f:validator binding="#{articleLabelValidator}"/>
+                                      </p:inputText>
+                                  </p:panelGrid>
+
+                                  <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+                                      <p:outputLabel value="Kategorie" for="section"/>
+                                      <p:selectOneMenu id="section"
+                                              disabled="#{!empty articlesBean.article.publishedAt}"
+                                              value="#{articlesBean.article.category}">
+                                          <f:selectItems value="#{Categories.ALL_VALUES}"/>
+                                      </p:selectOneMenu>
+                                  </p:panelGrid>
+                              </p:panelGrid>
+
+                              <p:outputLabel value="Perex článku" for="leadParagraph"/>
+                              <p:inputTextarea id="leadParagraph"
+                                      value="#{articlesBean.article.leadParagraph}"
+                                      required="true"
+                                      counter="display"
+                                      maxlength="700"
+                                      counterTemplate="Zbývá {0} znaků."
+                                      autoResize="true"
+                                      disabled="#{!empty articlesBean.article.publishedAt}"
+                                      rows="5"/>
+                              <h:outputText id="display" style="color: #666; font-size: 80%"/>
+
+                              <p:outputLabel value="Text článku" for="body"/>
+                              <p:textEditor id="body"
+                                      value="#{articlesBean.body}"
+                                      disabled="#{!empty articlesBean.article.publishedAt}"
+                                      height="300">
+                                  <f:facet name="toolbar">
+                                      <span class="ql-formats">
+                                          <select class="ql-font" />
+                                          <select class="ql-size" />
+                                      </span>
+                                      <span class="ql-formats">
+                                          <button class="ql-bold" />
+                                          <button class="ql-italic" />
+                                          <button class="ql-underline" />
+                                          <button class="ql-strike" />
+                                      </span>
+                                      <span class="ql-formats">
+                                          <button class="ql-script" value="sub" />
+                                          <button class="ql-script" value="super" />
+                                      </span>
+                                      <span class="ql-formats">
+                                          <button class="ql-blockquote" />
+                                          <button class="ql-code-block" />
+                                      </span>
+                                      <span class="ql-formats">
+                                          <button class="ql-list" value="ordered" />
+                                          <button class="ql-list" value="bullet" />
+                                          <button class="ql-indent" value="-1" />
+                                          <button class="ql-indent" value="+1" />
+                                      </span>
+                                      <span class="ql-formats">
+                                          <button class="ql-direction" value="rtl" />
+                                          <select class="ql-align" />
+                                      </span>
+                                      <span class="ql-formats">
+                                          <button class="ql-link" />
+                                          <button class="ql-image" />
+                                      </span>
+                                      <span class="ql-formats">
+                                          <button class="ql-clean" />
+                                      </span>
+                                  </f:facet>
+                              </p:textEditor>
+                          </p:panelGrid>
+
+                          <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+                              <p:commandButton value="Uložit" 
+                                      action="#{articlesBean.save}"
+                                      disabled="#{!empty articlesBean.article.publishedAt}"
+                                      icon="fa fa-check"
+                                      update=":growl @form"/>
+
+                                  <h:panelGroup layout="block" style="text-align: right">
+                                      <h:link value="Náhled článku"
+                                              outcome="/clanek.xhtml"
+                                              target="_blank"
+                                              disabled="#{!articlesBean.previewAllowed}">
+                                          <f:param name="id" value="#{articlesBean.article.id}"/>
+                                      </h:link>
+                                  </h:panelGroup>
+                              </p:panelGrid>
+                          </p:outputPanel>
+                      </p:column>
+                  </p:panelGrid>
+              </h:form>
+          </ui:define>
+      </ui:composition>

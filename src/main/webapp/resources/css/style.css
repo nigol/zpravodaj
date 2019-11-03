@@ -151,14 +151,34 @@ footer a {
 }
 
 .categoryArticle {
-    color: rgb(255,255,0);
-    background-color: rgb(0,113,254);
+    color: #ffcc01;
+    background-color: #1f4a99;
     font-size: 120%;
     padding-left: 1em;
     padding-right: 1em;
     box-shadow: 3px 3px 5px #888;
     font-family: "Times New Roman", Times, serif;
     font-variant: small-caps;
+}
+
+.archiveLink {
+    text-align: right;
+    font-size: 80%; 
+    font-style: italic;
+    margin-right: 1em;
+    color: #444;
+}
+
+.archiveLink a {
+    color: #444;
+}
+
+.archiveLink a:visited {
+    color: #444;
+}
+
+.archiveLink a:hover {
+    color: #444;
 }
 
 .facebook {

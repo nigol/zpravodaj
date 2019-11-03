@@ -2,6 +2,13 @@
 Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršice. Existuje jak v tištěné, tak i online verzi. Tento repozitář obsahuje zdrojové kódy online verze magazínu.
 
 ## Changelog
+### Verze 1.5
+
+* Při ukládání nového článku se pro ID převedou akcentované znaky na ASCII a mezery na -.
+* Archiv starších vydání.
+* Upraven design dle obecních stránek.
+* Při vložení obrázku je přidán "alt" atribut.
+
 ### Verze 1.4
 
 * Na stránce s kategorií článků je zobrazen název kategorie.
@@ -36,10 +43,11 @@ JdbcUrl = jdbc:hsqldb:file:hsqldb
 </Resource>
 ```
 
-V souboru _/WEB-INF/resources.xml_ je potřeba nastavit korektní URL aplikace. Například:
+V souboru _/WEB-INF/resources.xml_ je potřeba nastavit korektní URL aplikace a URL pro archiv článků. Například:
 
 ```
 <Resource id="config" class-name="cz.nigol.zpravodaj.config.Configuration">
 url = https://www.trsice.cz/zpravodaj/
+archiveUrl = https://www.trsice.cz/zpravodaj/clanek.jsf?id=Archiv
 </Resource>
 ```
