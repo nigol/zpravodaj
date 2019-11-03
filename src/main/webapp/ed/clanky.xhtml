@@ -118,7 +118,7 @@
                                             rendered="#{empty article.publishedAt}"
                                             onclick="return confirm('Opravdu chcete článek publikovat?')"
                                             update="@form :growl"
-                                            icon="fa fa-thermometer-full"
+                                            icon="fa fa-eye"
                                             resetValues="true"
                                             immediate="true"/>
                                     <p:commandButton value="Nepublikovat" 
@@ -126,7 +126,7 @@
                                             rendered="#{!empty article.publishedAt}"
                                             onclick="return confirm('Opravdu chcete zrušit publikaci článku?')"
                                             update="@form :growl"
-                                            icon="fa fa-thermometer-empty"
+                                            icon="fa fa-eye-slash"
                                             resetValues="true"
                                             immediate="true"/>
                                 </p:column>
