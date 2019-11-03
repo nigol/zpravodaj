@@ -19,6 +19,7 @@ public class ApplicationBean {
     private Configuration configuration;
     private Map<Integer, String> daysOfWeek;
     private String url;
+    private String archiveUrl;
 
     @PostConstruct
     public void init() {
@@ -31,6 +32,7 @@ public class ApplicationBean {
         daysOfWeek.put(6, "pátek");
         daysOfWeek.put(7, "sobota");
         url = configuration.getUrl();
+        archiveUrl = configuration.getArchiveUrl();
     }
 
     public Date today() {
@@ -56,5 +58,19 @@ public class ApplicationBean {
      */
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    /**
+     * @return the archiveUrl
+     */
+    public String getArchiveUrl() {
+        return archiveUrl;
+    }
+
+    /**
+     * @param archiveUrl the archiveUrl to set
+     */
+    public void setArchiveUrl(String archiveUrl) {
+        this.archiveUrl = archiveUrl;
     }
 }
