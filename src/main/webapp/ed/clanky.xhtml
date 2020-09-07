@@ -83,7 +83,8 @@
                                     rowKey="#{article.id}"
                                     rows="5"
                                     paginator="true"
-                                    paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                    paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+                                    currentPageReportTemplate="Článků celkem: {totalRecords}"
                                     var="article">
                                 <p:ajax event="rowSelect"
                                         listener="#{articlesBean.onArticleSelect}"
