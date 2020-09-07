@@ -6,23 +6,31 @@
 		xmlns:p="http://primefaces.org/ui">
 
   <header>
-    <div class="logo">
-      <h1>Tršický&#160;</h1>
-      <h:link outcome="/index.xhtml">
-        <h:graphicImage library="image" name="erb.png" alt="Erb obce Tršice"/>
-      </h:link>
-	<h1>&#160;Zpravodaj</h1>
+      <div class="logoTrsice">
+          <a href="https://www.trsice.cz">
+              <h:graphicImage library="image" 
+                style="width: 200px; height: 36px;"
+                name="obec.png" 
+                alt="Zpět na stránky obce"/>
+          </a>
+      </div>
+      <div class="logo">
+          <h1>Tršický&#160;</h1>
+          <h:link outcome="/index.xhtml">
+          <h:graphicImage library="image" name="erb.png" alt="Erb obce Tršice"/>
+          </h:link>
+          <h1>&#160;Zpravodaj</h1>
       </div>
       <div class="headerDate">
-	#{applicationBean.todayNameOfDay()},
-	<h:outputText value="#{applicationBean.today()}">
+          #{applicationBean.todayNameOfDay()},
+          <h:outputText value="#{applicationBean.today()}">
           <f:convertDateTime pattern="dd.MM.yyyy"/>
-        </h:outputText>
+          </h:outputText>
       </div>
       <div class="headerIssuer">
-	Vydává Obec Tršice.
+          Vydává Obec Tršice.
       </div>
       <div style="clear: both;">
       </div>
-    </header>
+  </header>
 </ui:composition>
