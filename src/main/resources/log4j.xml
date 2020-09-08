@@ -1,56 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-
-    <!-- Appenders : begin -->
-    <!-- display -->
-    <appender name="display" class="org.apache.log4j.ConsoleAppender">
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{ISO8601} %-5p [%-13t] %c: %m%n"/>
-        </layout>
-    </appender>
-
-    <!-- file -->
-    <appender name="fileRoot" class="org.apache.log4j.RollingFileAppender">
-        <!-- Web config-->
-        <param name="File" value="${catalina.home}/logs/zpravodaj.log" />
-
-        <param name="MaxFileSize" value="15000KB"/>
-        <param name="MaxBackupIndex" value="10"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{ISO8601} %-5p [%-13t] %c: %m%n"/>
-        </layout>
-    </appender>
-
-
-    <!-- Appenders : end -->
-
-    <!-- remove non-important warnings from log -->
-    <logger name="org.apache.myfaces">
-        <level value="warn"/>
-    </logger>
-    <logger name="javax.faces">
-        <level value="info"/>
-    </logger>
-    <logger name="com.sun.faces">
-        <level value="info"/>
-    </logger>
-    <logger name="com.sun.facelets">
-        <level value="info"/>
-    </logger>
-    <logger name="org.apache.commons">
-        <level value="info"/>
-    </logger>
-    <logger name="org.ajax4jsf">
-        <level value="warn"/>
-    </logger>
-
-    <!-- Root logger -->
-    <root>
-        <level value="info"/>
-        <appender-ref ref="fileRoot" />
-        <!--<appender-ref ref="display"/>-->
-    </root>
-
-</log4j:configuration>
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="org.apache.log4j.xml" level="info" />
+    <Root level="info">
+      <AppenderRef ref="STDOUT" />
+    </Root>
+  </Loggers>
+</Configuration>
