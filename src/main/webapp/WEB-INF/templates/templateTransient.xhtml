@@ -32,22 +32,18 @@
 
                                 <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_ENUM_VALUES"/>
                                 <div class="categories">
-                                    • 
                                     <ui:repeat var="category" value="#{Categories.ALL_ENUM_VALUES}">
                                         <h:link value="#{category.label}" outcome="/kategorie.xhtml">
                                             <f:param name="k" value="#{category}"/>
                                         </h:link>
-                                        • 
+                                        <h:outputText value=" "/>
                                     </ui:repeat>
+                                    •
+                                    <h:outputLink value="#{applicationBean.archiveUrl}"
+                                            rendered="#{!empty applicationBean.archiveUrl}">
+                                        Archiv 
+                                    </h:outputLink>
                                 </div>
-
-                                <br/>
-
-                                <h:outputLink value="#{applicationBean.archiveUrl}"
-                                        rendered="#{!empty applicationBean.archiveUrl}"
-                                        styleClass="archiveLink">
-                                    Archiv starších vydání
-                                </h:outputLink>
 
                                 <div class="ui-fluid" style="flex: 1 0 auto">
                                     <p:growl id="growl" showDetail="true" sticky="true" />
