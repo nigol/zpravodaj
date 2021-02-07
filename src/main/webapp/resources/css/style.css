@@ -36,33 +36,46 @@ label {
 header {
     border-bottom: 1px solid black;
     flex-shrink: 0;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+header a {
+    color: #666;
+}
+
+header a:visited {
+    color: #666;
+}
+
+header a:hover {
+    color: #666;
 }
 
 footer {
-    background-color: rgb(16, 24, 32);
-    color: white;
+    border-top: 1px solid black;
     margin-top: auto;
-    margin-left: 3px;
-    margin-right: 3px;
+    margin-left: 1em;
+    margin-right: 1em;
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 25px;
     padding-bottom: 25px;
-    border-radius: 10px 10px 0px 0px;
     flex-shrink: 0;
+    font-family: "Times New Roman", Times, serif;
 }
 
 footer a {
-    color: #fff;
+    color: #000;
     text-decoration: underline;
 }
 
 .categories a:visited {
-    color: #fff;
+    color: #000;
 }
 
 .categories a:hover {
-    color: #fff;
+    color: #000;
 }
 
 .headerDate {
@@ -96,6 +109,10 @@ footer a {
     font-family: "Times New Roman", Times, serif;
     font-variant: small-caps;
     font-size: 130%;
+    border-bottom: 1px solid black;
+    margin-left: 3em;
+    margin-right: 3em;
+    padding-bottom: 3px;
 }
 
 .categories a {
@@ -161,26 +178,6 @@ footer a {
     font-variant: small-caps;
 }
 
-.archiveLink {
-    text-align: right;
-    font-size: 80%; 
-    font-style: italic;
-    margin-right: 1em;
-    color: #444;
-}
-
-.archiveLink a {
-    color: #444;
-}
-
-.archiveLink a:visited {
-    color: #444;
-}
-
-.archiveLink a:hover {
-    color: #444;
-}
-
 .facebook {
     background: #3B5998;
     color: white;
@@ -220,12 +217,20 @@ footer a {
     line-height: 1.5;
 }
 
-.logoTrsice {
-    text-align: center;
-    margin-top: 1em;
+#featured .articleBody {
+    font-size: 90%;
+    line-height: 1.5;
+    border-bottom: 1px solid black;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 @media only screen and (max-width: 700px) {
+    #featured .articleBody {
+        margin-left: 1em;
+        margin-right: 1em
+    }
+    
     #content {
 	margin-left: 1em;
 	margin-right: 1em
@@ -248,6 +253,14 @@ footer a {
 }
 
 @media only screen and (min-width: 980px) {
+    #featured .articleBody {
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 960px;
+    }
+    
     #content {
 	margin-left: auto;
 	margin-right: auto;
@@ -279,6 +292,7 @@ footer a {
 	font-variant: small-caps;
 	margin-bottom: .1em;
     }
+    
     .logo img {
 	width: 1.7em;
 	height: 2em;
