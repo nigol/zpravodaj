@@ -217,7 +217,20 @@ footer a {
     line-height: 1.5;
 }
 
+#featured .articleBody {
+    font-size: 90%;
+    line-height: 1.5;
+    border-bottom: 1px solid black;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
 @media only screen and (max-width: 700px) {
+    #featured .articleBody {
+        margin-left: 1em;
+        margin-right: 1em
+    }
+    
     #content {
 	margin-left: 1em;
 	margin-right: 1em
@@ -240,6 +253,14 @@ footer a {
 }
 
 @media only screen and (min-width: 980px) {
+    #featured .articleBody {
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 960px;
+    }
+    
     #content {
 	margin-left: auto;
 	margin-right: auto;
@@ -271,6 +292,7 @@ footer a {
 	font-variant: small-caps;
 	margin-bottom: .1em;
     }
+    
     .logo img {
 	width: 1.7em;
 	height: 2em;

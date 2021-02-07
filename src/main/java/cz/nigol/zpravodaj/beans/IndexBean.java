@@ -33,6 +33,9 @@ public class IndexBean {
     public void init() {
         articles = articleService.getLatestPublishedArticles();
         featuredArticle = articleService.getFeaturedArticle();
+        if (featuredArticle != null) {
+            featuredArticle = articleService.loadArticleBody(featuredArticle);
+        }
     }
 
     public void onLoad() throws IOException {
