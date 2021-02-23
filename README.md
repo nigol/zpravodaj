@@ -3,6 +3,11 @@ Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršic
 
 ## Changelog
 
+### Verze 1.7.1
+
+* Malá oprava CSS pro úvodní stránku.
+* Změněno třídění článků v sekci editor.
+
 ### Verze 1.7
 
 * Změněn design úvodní stránky.
