@@ -223,17 +223,19 @@ footer a {
     border-bottom: 1px solid black;
     padding-bottom: 1em;
     margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 @media only screen and (max-width: 700px) {
     #featured .articleBody {
         margin-left: 1em;
-        margin-right: 1em
+        margin-right: 1em;
     }
     
     #content {
-	margin-left: 1em;
-	margin-right: 1em
+	    margin-left: 1em;
+	    margin-right: 1em
     }
 
     h1 {
@@ -254,8 +256,6 @@ footer a {
 
 @media only screen and (min-width: 980px) {
     #featured .articleBody {
-        margin-left: 1em;
-        margin-right: 1em;
         margin-left: auto;
         margin-right: auto;
         max-width: 960px;

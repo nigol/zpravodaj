@@ -23,7 +23,8 @@ import javax.persistence.TemporalType;
 import cz.nigol.zpravodaj.enums.Category;
 
 @NamedQueries({
-@NamedQuery(name=Article.GET_ALL, query="SELECT a FROM Article a"),
+@NamedQuery(name=Article.GET_ALL, 
+        query="SELECT a FROM Article a ORDER BY a.changedAt DESC"),
     @NamedQuery(name=Article.GET_BY_USER,
     query="SELECT a FROM Article a WHERE a.createdBy = :user ORDER BY a.changedAt DESC"),
     @NamedQuery(name=Article.GET_PUBLISHED,
