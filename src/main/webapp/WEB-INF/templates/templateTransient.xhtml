@@ -7,57 +7,48 @@
 
         <f:view contentType="text/html; charset=UTF-8" transient="true">
             <h:head>
-                <!-- Global site tag (gtag.js) - Google Analytics -->
-                                <script async="true" src="https://www.googletagmanager.com/gtag/js?id=UA-131573196-1"></script>
-                                <script>
-                                    window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1"/>
+                <link rel="icon" href="#{resource['image/favicon.png']}" sizes="16x16" type="image/png"/>
+                <h:outputStylesheet name="css/style.css"/>
+                <title>#{title}</title>
+                <meta property="og:url"                content="#{og_url}"/>
+                <meta property="og:type"               content="#{og_type}"/>
+                <meta property="og:title"              content="#{og_title}"/>
+                <meta property="og:description"        content="#{og_description}"/>
+                <meta property="og:image"              content="#{og_image}"/>
+            </h:head>
+            <h:body>
+                <ui:include src="inc/header.xhtml"/>
 
-                                    gtag('config', 'UA-131573196-1');
-                                </script>
-                                <meta charset="UTF-8" />
-                                <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1"/>
-                                <link rel="icon" href="#{resource['image/favicon.png']}" sizes="16x16" type="image/png"/>
-                                <h:outputStylesheet name="css/style.css"/>
-                                <title>#{title}</title>
-                                <meta property="og:url"                content="#{og_url}"/>
-                                <meta property="og:type"               content="#{og_type}"/>
-                                <meta property="og:title"              content="#{og_title}"/>
-                                <meta property="og:description"        content="#{og_description}"/>
-                                <meta property="og:image"              content="#{og_image}"/>
-                            </h:head>
-                            <h:body>
-                                <ui:include src="inc/header.xhtml"/>
+                <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_ENUM_VALUES"/>
+                <div class="categories">
+                    <ui:repeat var="category" value="#{Categories.ALL_ENUM_VALUES}">
+                        <h:link value="#{category.label}" outcome="/kategorie.xhtml">
+                            <f:param name="k" value="#{category}"/>
+                        </h:link>
+                        <h:outputText value=" "/>
+                    </ui:repeat>
+                    •
+                    <h:outputLink value="#{applicationBean.archiveUrl}"
+                            rendered="#{!empty applicationBean.archiveUrl}">
+                        Archiv 
+                    </h:outputLink>
+                </div>
 
-                                <p:importEnum type="cz.nigol.zpravodaj.enums.Category" var="Categories" allSuffix="ALL_ENUM_VALUES"/>
-                                <div class="categories">
-                                    <ui:repeat var="category" value="#{Categories.ALL_ENUM_VALUES}">
-                                        <h:link value="#{category.label}" outcome="/kategorie.xhtml">
-                                            <f:param name="k" value="#{category}"/>
-                                        </h:link>
-                                        <h:outputText value=" "/>
-                                    </ui:repeat>
-                                    •
-                                    <h:outputLink value="#{applicationBean.archiveUrl}"
-                                            rendered="#{!empty applicationBean.archiveUrl}">
-                                        Archiv 
-                                    </h:outputLink>
-                                </div>
+                <div class="ui-fluid" style="flex: 1 0 auto">
+                    <p:growl id="growl" showDetail="true" sticky="true" />
 
-                                <div class="ui-fluid" style="flex: 1 0 auto">
-                                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    <div id="featured">
+                        <ui:insert name="featured" />
+                    </div>
+                    
+                    <div id="content">
+                        <ui:insert name="content" />
+                    </div>
+                </div>
 
-                                    <div id="featured">
-                                        <ui:insert name="featured" />
-                                    </div>
-                                    
-                                    <div id="content">
-                                        <ui:insert name="content" />
-                                    </div>
-                                </div>
-
-                                <ui:include src="inc/footer.xhtml"/>
-                            </h:body>
-                        </f:view>
-                    </html>
+                <ui:include src="inc/footer.xhtml"/>
+            </h:body>
+        </f:view>
+</html>
