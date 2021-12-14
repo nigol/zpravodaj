@@ -3,6 +3,11 @@ Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršic
 
 ## Changelog
 
+### Verze 1.7.2
+
+* Odstraněno Google Analytics.
+* ViewState na klientovi.
+
 ### Verze 1.7.1
 
 * Malá oprava CSS pro úvodní stránku.
