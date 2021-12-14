@@ -30,7 +30,7 @@
     
     <session-config>
         <session-timeout>
-            240
+            120
         </session-timeout>
     </session-config>
     
