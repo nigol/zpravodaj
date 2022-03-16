@@ -158,7 +158,8 @@ public class ArticleServiceImpl implements ArticleService {
         element.appendChild(document.createTextNode(article.getLeadParagraph()));
         root.appendChild(element);
         element = document.createElement("pubDate");
-        DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy");
+        DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy", 
+            Locale.US);
         element.appendChild(document.createTextNode(formatter.format(article.getPublishedAt()) + " 00:00:00 GMT"));
         root.appendChild(element);
     }
