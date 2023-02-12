@@ -91,6 +91,17 @@ public class Article implements Serializable {
 
     @Column(name="PRINT")
     private boolean print;
+    
+    @Column(name="EDIT_SOURCE")
+    private boolean editSource;
+    
+    public boolean isEditSource() {
+        return editSource;
+    }
+    
+    public void setEditSource(boolean editSource) {
+        this.editSource = editSource;
+    }
 
     /**
      * @return the id
