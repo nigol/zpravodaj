@@ -61,6 +61,7 @@ public class ArticlesBean implements Serializable {
 
     public void save() {
         article.setChangedAt(new Date());
+        article.setEditSource(editSource);
         if (NEW_ID.equals(article.getId())) {
             article.setCreatedBy(user);
             String normalized = Normalizer.normalize(article.getLabel(), 
@@ -102,6 +103,7 @@ public class ArticlesBean implements Serializable {
 
     public void onArticleSelect() {
         article = articleService.loadArticleBody(article);
+        editSource = article.isEditSource();
         body = article.getBody();
     }
 
