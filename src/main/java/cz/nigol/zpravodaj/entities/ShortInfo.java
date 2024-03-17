@@ -71,7 +71,7 @@ public class ShortInfo implements Serializable {
     }
 
     public String getUrl() {
-        return path;
+        return url;
     }
 
     public void setUrl(String url) {
