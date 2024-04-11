@@ -15,6 +15,9 @@
 		  icon="fa fa-users"
 		  rendered="#{sessionBean.editor}"
 		  outcome="/ed/uzivatele.xhtml?faces-redirect=true"/>
+      <p:menuitem value="Krátké zprávy"
+                  outcome="/ed/kratke-zpravy.xhtml?faces-redirect=true"
+                  rendered="#{sessionBean.editor}"/>
       <f:facet name="options">
 	<p:commandButton value="Odhlásit #{sessionBean.user.id}"
 			 icon="fa fa-sign-out"

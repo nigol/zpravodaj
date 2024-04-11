@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NamedQuery(name=ShortInfo.GET_ALL,
 query="SELECT s FROM ShortInfo s"),
     @NamedQuery(name=ShortInfo.GET_BY_DATE,
-    query="SELECT s FROM ShortInfo s WHERE s.user = :date ORDER BY f.createdAt DESC"),
+    query="SELECT s FROM ShortInfo s WHERE s.infoDate = :date ORDER BY f.createdAt DESC"),
 })
 
 @Entity
@@ -17,7 +17,7 @@ query="SELECT s FROM ShortInfo s"),
 public class ShortInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public static final String GET_ALL = "FileMetadata.getAll";
+    public static final String GET_ALL = "ShortInfo.getAll";
     public static final String GET_BY_DATE = "ShortInfo.GET_BY_DATE";
 
     public static final String DATE_PARAM = "date";
@@ -38,12 +38,24 @@ public class ShortInfo implements Serializable {
     private User user;
 
     @Column(name = "CREATED_AT")
-        @Temporal(TemporalType.TIMESTAMP)
-        private Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Column(name = "INFO_DATE")
+    @Temporal(TemporalType.DATE)
+    private Date infoDate;
 
     @PrePersist
     public void prepareData() {
         createdAt = new Date();
+    }
+
+    public Date getInfoDate() {
+      return this.infoDate;
+    }
+
+    public void setInfoDate(Date infoDate) {
+      this.infoDate = infoDate;
     }
 
     public Date getCreatedAt() {
