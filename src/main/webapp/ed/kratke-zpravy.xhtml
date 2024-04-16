@@ -18,7 +18,7 @@
 	    <p:commandButton value="Nová zpráva"
 			     action="#{shortInfoBean.newShortInfo}"
 			     update="@form"
-			     ajax="false"
+			     ajax="true"
 			     immediate="true"/>
 	  </p:panelGrid>
 
@@ -36,7 +36,9 @@
 		    update="@form"
 		    resetValues="true"/>
 	    <p:column headerText="Datum">
-	      <h:outputText value="#{shortInfo.infoDate}"/>
+	      <h:outputText value="#{shortInfo.infoDate}">
+          <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+        </h:outputText>
 	    </p:column>
  	    <p:column headerText="Text">
 	      <h:outputText value="#{shortInfo.description}"/>
@@ -50,12 +52,14 @@
 	    
 	    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
 	      <p:outputLabel value="Datum" for="date"/>
-	      <p:inputText id="date" value="#{shortInfoBean.shortInfo.infoDate}" required="true">
-		<f:validateLength minimum="1" maximum="50" />
-	      </p:inputText>
+        <p:calendar id="date"
+          value="#{shortInfoBean.shortInfo.infoDate}"
+          locale="cz"
+          pattern="dd.MM.yyyy"
+          mask="true"/>
 	      <p:outputLabel value="Text" for="description"/>
 	      <p:inputText id="description" value="#{shortInfoBean.shortInfo.description}" required="true">
-		<f:validateLength minimum="1" maximum="200" />
+		      <f:validateLength minimum="1" maximum="200" />
 	      </p:inputText>
 	    </p:panelGrid>
 
@@ -64,7 +68,7 @@
 			     update=":growl @form"/>
 	  </p:outputPanel>
 	</p:column>
-      </p:panelGrid>
-    </h:form>
+</p:panelGrid>
+</h:form>
   </ui:define>
 </ui:composition>

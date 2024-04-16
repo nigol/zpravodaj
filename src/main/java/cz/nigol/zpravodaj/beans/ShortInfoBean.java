@@ -6,12 +6,13 @@ import java.io.Serializable;
 import javax.inject.*;
 import javax.enterprise.context.*;
 import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 
 import cz.nigol.zpravodaj.entities.*;
 import cz.nigol.zpravodaj.services.*;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class ShortInfoBean implements Serializable {
     private static final long serialVersionUID = 9212583897602369531L;
     @Inject
