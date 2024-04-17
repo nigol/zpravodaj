@@ -33,4 +33,8 @@ public class ShortInfoServiceImpl implements ShortInfoService {
       return em.merge(shortInfo);
     }
     
+    @Override
+    public void delete(ShortInfo shortInfo) {
+      em.remove(em.merge(shortInfo));
+    }
 }

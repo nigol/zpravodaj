@@ -45,9 +45,15 @@ public class ShortInfo implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date infoDate;
 
-    @PrePersist
-    public void prepareData() {
-        createdAt = new Date();
+    @Column(name = "URL_LINK")
+    private String urlLink;
+
+    public String getUrlLink() {
+      return this.urlLink;
+    }
+
+    public void setUrlLink(String urlLink) {
+      this.urlLink = urlLink;
     }
 
     public Date getInfoDate() {

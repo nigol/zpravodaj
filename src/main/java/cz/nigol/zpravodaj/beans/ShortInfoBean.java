@@ -30,6 +30,13 @@ public class ShortInfoBean implements Serializable {
       shortInfos = shortInfoService.getAll();
     }
 
+    public void delete() {
+      shortInfoService.delete(shortInfo);
+      shortInfo = null;
+      init();
+      facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Zpráva byla smazána."));
+    }
+
     public void save() {
       shortInfoService.save(shortInfo);
       shortInfo = null;
