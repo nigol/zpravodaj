@@ -28,6 +28,7 @@ public class ShortInfoBean implements Serializable {
     @PostConstruct
     public void init() {
       shortInfos = shortInfoService.getAll();
+      shortInfo = shortInfoService.getByDate(new Date());
     }
 
     public void delete() {

@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NamedQuery(name=ShortInfo.GET_ALL,
 query="SELECT s FROM ShortInfo s"),
     @NamedQuery(name=ShortInfo.GET_BY_DATE,
-    query="SELECT s FROM ShortInfo s WHERE s.infoDate = :date ORDER BY f.createdAt DESC"),
+    query="SELECT s FROM ShortInfo s WHERE s.infoDate = :date ORDER BY s.createdAt DESC"),
 })
 
 @Entity

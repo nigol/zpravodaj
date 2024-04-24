@@ -22,10 +22,11 @@ public class ShortInfoServiceImpl implements ShortInfoService {
     }
 
     @Override
-    public List<ShortInfo> getByDate(Date date) {
+    public ShortInfo getByDate(Date date) {
       TypedQuery<ShortInfo> typedQuery = em.createNamedQuery(ShortInfo.GET_BY_DATE, ShortInfo.class);
       typedQuery.setParameter(ShortInfo.DATE_PARAM, date);
-      return new ArrayList<>(typedQuery.getResultList());
+      List<ShortInfo> infos = typedQuery.getResultList();
+      return infos.isEmpty() ? null : infos.get(0);
     }
 
     @Override
