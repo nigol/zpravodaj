@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+		template="/WEB-INF/templates/templateAu.xhtml"
+		xmlns:p="http://primefaces.org/ui">
+
+  <ui:param name="title" value="Tršický zpravodaj"/>
+
+  <ui:define name="content">
+    <h2>Krátké zprávy</h2>
+
+    <h:form>
+      <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	<p:column>
+	  <p:panelGrid layout="grid" columns="2" styleClass="ui-noborder">
+	    <p:commandButton value="Nová zpráva"
+			     action="#{shortInfoBean.newShortInfo}"
+			     update="@form"
+			     ajax="true"
+			     immediate="true"/>
+      <p:commandButton value="Smazat zprávu" 
+              action="#{shortInfoBean.delete}"
+              disabled="#{empty shortInfoBean.shortInfo}"
+              onclick="return confirm('Opravdu smazat?')"
+              update="@form :growl"
+              resetValues="true"
+              immediate="true"/>
+	  </p:panelGrid>
+
+	  <p:dataTable id="shortInfos"
+		       value="#{shortInfoBean.shortInfos}"
+		       emptyMessage="Nenalezen žádný výsledek."
+		       selectionMode="single"
+		       selection="#{shortInfoBean.shortInfo}"
+		       rowKey="#{shortInfo.id}"
+		       rows="10"
+		       paginator="true"
+		       paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+		       var="shortInfo">
+	    <p:ajax event="rowSelect"
+		    update="@form"
+		    resetValues="true"/>
+	    <p:column headerText="Datum">
+	      <h:outputText value="#{shortInfo.infoDate}">
+          <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+        </h:outputText>
+	    </p:column>
+ 	    <p:column headerText="Text">
+	      <h:outputText value="#{shortInfo.description}"/>
+	    </p:column>
+	  </p:dataTable>
+	</p:column>
+
+	<p:column>
+	  <p:outputPanel rendered="#{!empty shortInfoBean.shortInfo}">
+	    <h3>Zpráva</h3>
+	    
+	    <p:panelGrid layout="grid" columns="1" styleClass="ui-noborder">
+	      <p:outputLabel value="Datum" for="date"/>
+        <p:calendar id="date"
+          value="#{shortInfoBean.shortInfo.infoDate}"
+          locale="cz"
+          pattern="dd.MM.yyyy"
+          mask="true"/>
+	      <p:outputLabel value="Text" for="description"/>
+	      <p:inputText id="description" value="#{shortInfoBean.shortInfo.description}" required="true">
+		      <f:validateLength minimum="1" maximum="200" />
+	      </p:inputText>
+	      <p:outputLabel value="URL odkaz" for="urlLink"/>
+	      <p:inputText id="urlLink" value="#{shortInfoBean.shortInfo.urlLink}">
+		      <f:validateLength maximum="255" />
+	      </p:inputText>
+	    </p:panelGrid>
+
+	    <p:commandButton value="Uložit"
+			     action="#{shortInfoBean.save}"
+			     update=":growl @form"/>
+	  </p:outputPanel>
+	</p:column>
+</p:panelGrid>
+</h:form>
+  </ui:define>
+</ui:composition>
