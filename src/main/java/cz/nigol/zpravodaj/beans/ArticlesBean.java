@@ -2,21 +2,17 @@ package cz.nigol.zpravodaj.beans;
 
 import java.io.Serializable;
 import java.text.Normalizer;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.inject.*;
 
-import cz.nigol.zpravodaj.entities.Article;
-import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.zpravodaj.entities.*;
 import cz.nigol.zpravodaj.qualifiers.LoggedUser;
-import cz.nigol.zpravodaj.services.ArticleService;
-import cz.nigol.zpravodaj.services.UserService;
+import cz.nigol.zpravodaj.services.*;
 
 @Named
 @ViewScoped

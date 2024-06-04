@@ -6,8 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import cz.nigol.zpravodaj.config.Configuration;
-import cz.nigol.zpravodaj.entities.Article;
-import cz.nigol.zpravodaj.entities.User;
+import cz.nigol.zpravodaj.entities.*;
 import cz.nigol.zpravodaj.qualifiers.LoggedUser;
 import cz.nigol.zpravodaj.services.ArticleService;
 
