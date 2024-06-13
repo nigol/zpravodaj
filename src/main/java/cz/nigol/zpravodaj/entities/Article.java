@@ -4,21 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import cz.nigol.zpravodaj.enums.Category;
 
@@ -94,6 +80,9 @@ public class Article implements Serializable {
     
     @Column(name="EDIT_SOURCE")
     private boolean editSource;
+   
+    @Column(name="AUDIO_URL")
+    private String audioUrl;
     
     public boolean isEditSource() {
         return editSource;
@@ -101,6 +90,14 @@ public class Article implements Serializable {
     
     public void setEditSource(boolean editSource) {
         this.editSource = editSource;
+    }
+
+    public String getAudioUrl() {
+        return audioUrl;
+    }
+
+    public void setAudioUrl(String audioUrl) {
+        this.audioUrl = audioUrl;
     }
 
     /**

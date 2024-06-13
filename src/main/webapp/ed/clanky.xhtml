@@ -182,6 +182,11 @@
                                         <f:validateLength maximum="300"/>
                                     </p:inputText>
 
+                                    <p:outputLabel value="Adresa URL pro audio verzi" for="audioUrl"/>
+                                    <p:inputText id="audioUrl" value="#{articlesBean.article.audioUrl}">
+                                        <f:validateLength maximum="300"/>
+                                    </p:inputText>
+
                                     <p:selectBooleanCheckbox value="#{articlesBean.article.print}" 
                                             itemLabel="Tisk"/>
 

@@ -6,7 +6,7 @@
                 template="/WEB-INF/templates/templateTransient.xhtml"
                 xmlns:p="http://primefaces.org/ui">
 
-  <ui:param name="title" value="#{singleArticleBean.article.label} - Tršický zpravodaj"/>
+  <ui:param name="title" value="#{singleArticleBean.article.label} • Tršický zpravodaj"/>
   <ui:param name="og_url" value="#{singleArticleBean.articleUrl}"/>
   <ui:param name="og_type" value="article"/>
   <ui:param name="og_title" value="#{singleArticleBean.article.label}"/>
@@ -47,6 +47,16 @@
 	    <p style="font-size: 130%">
 	      #{singleArticleBean.article.leadParagraph}
 	    </p>
+
+	    <p:outputPanel rendered="#{!empty singleArticleBean.article.audioUrl}" styleClass="audioWrapper">
+        <p>
+          <i>Tento článek si můžete také poslechnout jako audio.</i>
+        </p>
+        <audio controls="controls">
+         <source src="#{singleArticleBean.article.audioUrl}"/>
+          Váš prohlížeč nepodporuje přehrávání zvukových záznamů.
+        </audio>
+      </p:outputPanel>
 
 	    <div class="articleBody">
 	      <h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
