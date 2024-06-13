@@ -246,6 +246,13 @@ footer a {
   color: #000;
 }
 
+.audioWrapper {
+  text-align: center;
+  padding: 1em;
+  border-top: 2px dashed #eeeeee;
+  border-bottom: 2px dashed #eeeeee;
+}
+
 @media only screen and (max-width: 700px) {
     #featured .articleBody {
         margin-left: 1em;

@@ -48,6 +48,16 @@
 	      #{singleArticleBean.article.leadParagraph}
 	    </p>
 
+	    <p:outputPanel rendered="#{!empty singleArticleBean.article.audioUrl}" styleClass="audioWrapper">
+        <p>
+          <i>Tento článek si můžete také poslechnout jako audio.</i>
+        </p>
+        <audio controls="controls">
+         <source src="#{singleArticleBean.article.audioUrl}"/>
+          Váš prohlížeč nepodporuje přehrávání zvukových záznamů.
+        </audio>
+      </p:outputPanel>
+
 	    <div class="articleBody">
 	      <h:outputText value="#{singleArticleBean.article.body}" escape="false"/>
 	    </div>
