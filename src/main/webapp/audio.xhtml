@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/templateTransient.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:param name="title" value="Audio verze článků • Tršický zpravodaj"/>
+  <ui:param name="og_title" value="Audio verze článků • Tršický zpravodaj"/>
+  <ui:param name="og_description" value="Seznam článků, které mají k dispozici audio verzi."/>
+
+  <ui:define name="content">
+      <p:panelGrid layout="grid"
+		   columns="2"
+		   columnClasses="ui-grid-col-10,ui-grid-col-2"
+		   styleClass="ui-noborder">
+	<p:column>
+	  <h:panelGroup id = "article" layout="block">
+          <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: bold; text-align: center;">
+              Audio verze článků
+          </h3>
+
+	    <p:outputPanel rendered="#{!empty singleArticleBean.article.audioUrl}" styleClass="audioWrapper">
+        <p>
+          <i>Tento článek si můžete také poslechnout jako audio.</i>
+        </p>
+        <audio controls="controls">
+         <source src="#{singleArticleBean.article.audioUrl}"/>
+          Váš prohlížeč nepodporuje přehrávání zvukových záznamů.
+        </audio>
+      </p:outputPanel>
+
+	    <p style="text-align: right;">
+	      &#8718;
+	    </p>
+    </h:panelGroup>
+	</p:column>
+
+	<p:column>
+	  <h6 style="margin-top: 8em; border-top: 1px solid #eee; text-align: center; color: #aaa; display: inline-block; padding: 1em">
+	    VYBRANÝ ČLÁNEK
+	  </h6>
+	  <h:link outcome="/clanek.xhtml"
+		  rendered="#{!empty singleArticleBean.featuredArticle}"
+		  style="text-decoration: none">
+	    <f:param name="id" value="#{singleArticleBean.featuredArticle.id}"/>
+	    <h5 style="color: #666">#{singleArticleBean.featuredArticle.label}</h5>
+	    <img src="#{singleArticleBean.featuredArticle.featuredUrl}" style="max-width: 100%"></img>
+	    <p style="font-size: smaller; color: #666">#{singleArticleBean.featuredArticle.leadParagraph}</p>
+	  </h:link>
+	</p:column>
+  </p:panelGrid>
+
+    <h:link value="Zpět na úvod" outcome="/index.xhtml"/>
+  </ui:define>
+</ui:composition>

@@ -30,6 +30,8 @@
                         <h:outputText value=" "/>
                     </ui:repeat>
                     •
+                    <h:link value="Audio" outcome="/audio.xhtml"/>
+                    <h:outputText value=" "/>
                     <h:outputLink value="#{applicationBean.archiveUrl}"
                             rendered="#{!empty applicationBean.archiveUrl}">
                         Archiv 
