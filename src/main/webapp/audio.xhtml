@@ -27,6 +27,25 @@
                             alt="Logo audio sekce"/>
           </div>
 
+          <ui:repeat value="#{audioArticlesBean.audioArticles}" var="article" rendered="#{!empty audioArticlesBean.audioArticles}">
+            <h:link outcome="/clanek.xhtml" style="text-decoration: none">
+              <f:param name="id" value="#{article.id}"/>
+              <h3 style="font-family: serif; font-size: 1.5em; font-style: italic; font-weight: normal; text-align: center;">
+                #{article.label}
+              </h3>
+            </h:link>
+            <p style="text-align: center;border-top: 1px black solid;font-family: serif;font-variant: small-caps;width: 80%;margin-left: auto;margin-right: auto;">
+              <h:outputText value="#{article.publishedAt}">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+              </h:outputText>
+              <br/>
+              <audio controls="controls">
+              <source src="#{article.audioUrl}"/>
+                Váš prohlížeč nepodporuje přehrávání zvukových záznamů.
+              </audio>
+            </p>
+          </ui:repeat>
+
 	    <p:outputPanel rendered="#{!empty singleArticleBean.article.audioUrl}" styleClass="audioWrapper">
         <p>
           <i>Tento článek si můžete také poslechnout jako audio.</i>
