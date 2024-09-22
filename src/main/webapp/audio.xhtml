@@ -17,9 +17,15 @@
 		   styleClass="ui-noborder">
 	<p:column>
 	  <h:panelGroup id = "article" layout="block">
-          <h3 style="font-family: serif; font-size: 2.5em; font-style: italic; font-weight: bold; text-align: center;">
+          <h3 style="font-family: serif; font-size: 1.5em; font-variant: small-caps; font-weight: normal; text-align: center;">
               Audio verze článků
           </h3>
+          <div style="text-align: center;">
+            <h:graphicImage library="image" 
+                            style="width: 70%;"
+                            name="audio.jpg" 
+                            alt="Logo audio sekce"/>
+          </div>
 
 	    <p:outputPanel rendered="#{!empty singleArticleBean.article.audioUrl}" styleClass="audioWrapper">
         <p>
