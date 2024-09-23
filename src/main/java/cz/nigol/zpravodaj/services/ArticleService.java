@@ -20,4 +20,5 @@ public interface ArticleService {
     void generateRss(OutputStream outputStream);
     List<Article> getLatestPublishedArticles();
     List<Article> getPublishedArticlesByUserId(String userId);
+    List<Article> getArticlesWithAudio();
 }

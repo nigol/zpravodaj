@@ -189,4 +189,11 @@ public class ArticleServiceImpl implements ArticleService {
         typedQuery.setParameter(Article.USER_ID_PARAM, userId);
         return new ArrayList<>(typedQuery.getResultList());
     }
+
+    @Override
+    public List<Article> getArticlesWithAudio() {
+      TypedQuery<Article> typedQuery = em.createNamedQuery(Article.GET_AUDIO,
+        Article.class);
+      return new ArrayList<>(typedQuery.getResultList());
+  }
 }
