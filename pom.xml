@@ -6,7 +6,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <modelVersion>4.0.0</modelVersion>
   <groupId>cz.nigol</groupId>
   <artifactId>zpravodaj</artifactId>
-  <version>1.8.3</version>
+  <version>1.8.4</version>
   <packaging>war</packaging>
   <properties>
     <project.build.sourceEncoding>
@@ -43,11 +43,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <groupId>org.primefaces</groupId>
       <artifactId>primefaces</artifactId>
       <version>6.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.primefaces.themes</groupId>
-      <artifactId>delta</artifactId>
-      <version>1.0.10</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
