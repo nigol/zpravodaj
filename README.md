@@ -3,6 +3,10 @@ Repozitář pro Tršický zpravodaj. Tršický zpravodaj je magazín obce Tršic
 
 ## Changelog
 
+### Verze 1.8.4
+
+* Odebráno téma Delta
+
 ### Verze 1.8.3
 
 * Nové záhlaví / logo.
